@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://java.sun.com/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:s="urn:java:ee"
+       xmlns:vn="urn:java:com.smspl.mc4.monitoring.virtualnumber:org.jboss.seam.rest.client"
+       xsi:schemaLocation="
+        http://java.sun.com/xml/ns/javaee
+        http://docs.jboss.org/cdi/beans_1_0.xsd"
+        >
+
+    <vn:SendTestSMSTask>
+        <s:modifies/>
+        <vn:sendSMSService>
+            <vn:RestClient value="https://primary.smartmessagingservices.net/mc54"/>
+        </vn:sendSMSService>
+    </vn:SendTestSMSTask>
+
+    <vn:CheckManager>
+        <s:modifies/>
+        <vn:checkConfigs>
+            <s:Any/>
+            <s:Inject/>
+        </vn:checkConfigs>
+    </vn:CheckManager>
+
+    <vn:VirtualNumberTestConfig>
+        <s:modifies/>
+        <vn:checkInstance>Check1</vn:checkInstance>
+        <vn:checkFrequency>1</vn:checkFrequency>
+        <vn:username></vn:username>
+        <vn:password></vn:password>
+        <vn:recipient></vn:recipient>
+        <vn:sender></vn:sender>
+    </vn:VirtualNumberTestConfig>
+
+</beans>
