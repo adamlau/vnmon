@@ -18,6 +18,9 @@ import javax.inject.Inject;
 public class SendTestSMSTask2 {
 
     @Inject
+    CheckCommandStateCache stateCache;
+
+    @Inject
     Logger log;
 
     @Inject
