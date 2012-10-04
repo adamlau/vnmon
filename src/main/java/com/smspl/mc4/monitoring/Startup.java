@@ -17,16 +17,17 @@ import javax.inject.Inject;
  * Time: 2:13 PM
  * To change this template use File | Settings | File Templates.
  */
+@ApplicationScoped
 public class Startup {
 
     @Inject
     Logger log;
 
     @Inject
-    CheckManager checkManager;
+    HeartbeatEmitter heartbeatEmitter;
 
     public void onStartup(@Observes @Started WebApplication webapp) {
         log.info("************************** Application at " + webapp.getContextPath() + " ready to handle requests");
-        checkManager.runChecks();
+        heartbeatEmitter.start();
     }
 }

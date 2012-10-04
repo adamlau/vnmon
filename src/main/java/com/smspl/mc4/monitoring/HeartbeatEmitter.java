@@ -6,8 +6,13 @@ import org.joda.time.Instant;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,18 +21,30 @@ import javax.inject.Inject;
  * Time: 1:51 PM
  * To change this template use File | Settings | File Templates.
  */
-//@Singleton
-//@Startup
+@ApplicationScoped
 public class HeartbeatEmitter {
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+    Long initialDelay = 20l;
+    Long periodInSeconds = 60l;
+
     @Inject
     Logger log;
 
     @Inject
     private Event<HeartbeatEvent> heartbeat;
 
-//    @Schedule(hour="*", minute="*", second="*/10", persistent = false)
-    public void emit() {
-        log.infof("heartbeat: %s", Instant.now());
-        heartbeat.fire(new HeartbeatEvent());
+    public void start() {
+        log.infof("Starting HeartbeatEmitter. Observe the HeartbeatEvent to subscribe.", Instant.now());
+
+        final Runnable emitter = new Runnable() {
+            @Override
+            public void run() {
+                log.infof("heartbeat: %s", Instant.now());
+                heartbeat.fire(new HeartbeatEvent());
+            }
+        };
+
+        final ScheduledFuture<?> emitterHandle = scheduler.scheduleAtFixedRate(emitter, initialDelay, periodInSeconds, TimeUnit.SECONDS);
     }
 }
