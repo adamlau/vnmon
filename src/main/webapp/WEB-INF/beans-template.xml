@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://java.sun.com/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:s="urn:java:ee"
+       xmlns:vn="urn:java:com.smspl.mc4.monitoring.virtualnumber:org.jboss.seam.rest.client"
+       xmlns:mn="urn:java:com.smspl.mc4.monitoring"
+       xsi:schemaLocation="
+        http://java.sun.com/xml/ns/javaee
+        http://docs.jboss.org/cdi/beans_1_0.xsd"
+        >
+
+    <mn:HeartbeatEmitter>
+        <s:modifies/>
+        <mn:initialDelay>3</mn:initialDelay>
+        <mn:periodInSeconds>5</mn:periodInSeconds>
+    </mn:HeartbeatEmitter>
+
+    <vn:SendTestSMSTask2>
+        <s:modifies/>
+        <vn:sendSMSService>
+            <vn:RestClient value="https://primary.smartmessagingservices.net/mc54"/>
+        </vn:sendSMSService>
+    </vn:SendTestSMSTask2>
+
+    <vn:VirtualNumberTestConfigManager>
+        <s:modifies/>
+        <vn:checkConfigs>
+            <s:Any/>
+            <s:Inject/>
+        </vn:checkConfigs>
+    </vn:VirtualNumberTestConfigManager>
+
+    <vn:VirtualNumberTestConfig>
+        <s:modifies/>
+        <vn:username>a</vn:username>
+        <vn:password>a</vn:password>
+        <vn:recipient>a</vn:recipient>
+        <vn:sender>a</vn:sender>
+    </vn:VirtualNumberTestConfig>
+
+</beans>
