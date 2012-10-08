@@ -21,12 +21,13 @@ import java.util.concurrent.TimeUnit;
  * Time: 1:51 PM
  * To change this template use File | Settings | File Templates.
  */
-@ApplicationScoped
 public class HeartbeatEmitter {
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     Long initialDelay = 20l;
     Long periodInSeconds = 60l;
+
+    ScheduledFuture<?> emitterHandle = null;
 
     @Inject
     Logger log;
@@ -45,6 +46,14 @@ public class HeartbeatEmitter {
             }
         };
 
-        final ScheduledFuture<?> emitterHandle = scheduler.scheduleAtFixedRate(emitter, initialDelay, periodInSeconds, TimeUnit.SECONDS);
+        emitterHandle = scheduler.scheduleAtFixedRate(emitter, initialDelay, periodInSeconds, TimeUnit.SECONDS);
+    }
+
+    public void stop() {
+        if( emitterHandle != null )
+        {
+            log.info("Stopping HeartbeatEmitter.");
+            emitterHandle.cancel(true);
+        }
     }
 }

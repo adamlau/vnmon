@@ -1,12 +1,7 @@
 package com.smspl.mc4.monitoring.virtualnumber;
 
-import com.smspl.mc4.monitoring.HeartbeatEvent;
 import org.jboss.solder.logging.Logger;
-import org.joda.time.Instant;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 /**
@@ -21,13 +16,27 @@ public class CheckManager {
     @Inject
     Logger log;
 
-    Instance<VirtualNumberTestConfig> checkConfigs;
+    @Inject
+    RebuildCheckCommandStateCacheCommand rebuildCommand;
 
-    public void runChecks(@Observes HeartbeatEvent heartbeatEvent) {
-        log.infof("received heartbeat at: %s", Instant.now());
+    @Inject
+    CheckCommandStateCache checkCommandStateCache;
 
-        for (VirtualNumberTestConfig config : checkConfigs) {
-            log.infof("config %s, freq %s: %s", config.getCheckInstance(), config.getCheckFrequency(), config.toString());
+    public void start()
+    {
+        rebuildCacheIfEmpty();
+    }
+
+//    public void runChecks(@Observes HeartbeatEvent heartbeatEvent) {
+//        log.infof("received heartbeat at: %s", Instant.now());
+//        rebuildCacheIfEmpty();
+//    }
+
+    private void rebuildCacheIfEmpty()
+    {
+        if( checkCommandStateCache.isEmpty() )
+        {
+            rebuildCommand.execute(checkCommandStateCache);
         }
     }
 

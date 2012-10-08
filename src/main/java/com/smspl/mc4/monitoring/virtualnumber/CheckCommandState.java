@@ -13,16 +13,16 @@ import java.util.UUID;
  */
 public class CheckCommandState {
     private final UUID stateId;
-    private final String documentId;
+    private String documentId;
     private Instant submitTime;
     private String submitStatus;
     private Instant deliveryReceiptTime;
     private String deliveryReceiptStatus;
     private Instant receiveTime;
+    private VirtualNumberTestConfig testConfig;
 
-    public CheckCommandState(String documentId) {
+    public CheckCommandState() {
         this.stateId = UUID.randomUUID();
-        this.documentId = documentId;
     }
 
     public UUID getStateId() {
@@ -51,5 +51,9 @@ public class CheckCommandState {
 
     public Instant getReceiveTime() {
         return receiveTime;
+    }
+
+    public void setTestConfig(VirtualNumberTestConfig testConfig) {
+        this.testConfig = testConfig;
     }
 }

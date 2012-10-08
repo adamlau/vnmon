@@ -4,6 +4,7 @@ import com.smspl.mc4.monitoring.virtualnumber.CheckManager;
 import org.jboss.solder.logging.Log;
 import org.jboss.solder.logging.Logger;
 import org.jboss.solder.servlet.WebApplication;
+import org.jboss.solder.servlet.event.Destroyed;
 import org.jboss.solder.servlet.event.Started;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -26,8 +27,18 @@ public class Startup {
     @Inject
     HeartbeatEmitter heartbeatEmitter;
 
+    @Inject
+    CheckManager checkManager;
+
     public void onStartup(@Observes @Started WebApplication webapp) {
         log.info("************************** Application at " + webapp.getContextPath() + " ready to handle requests");
         heartbeatEmitter.start();
+        checkManager.start();
+    }
+
+    public void onShutdown(@Observes @Destroyed WebApplication webapp)
+    {
+        log.info("************************** Application at " + webapp.getContextPath() + " stopping");
+        heartbeatEmitter.stop();
     }
 }

@@ -11,28 +11,10 @@ import org.joda.time.Duration;
  */
 public class VirtualNumberTestConfig {
 
-    private String checkInstance;
-    private int checkFrequency;
     private String username;
     private String password;
     private String recipient;
     private String sender;
-
-    public String getCheckInstance() {
-        return checkInstance;
-    }
-
-    public void setCheckInstance(String checkInstance) {
-        this.checkInstance = checkInstance;
-    }
-
-    public int getCheckFrequency() {
-        return checkFrequency;
-    }
-
-    public void setCheckFrequency(int checkFrequency) {
-        this.checkFrequency = checkFrequency;
-    }
 
     public String getUsername() {
         return username;
