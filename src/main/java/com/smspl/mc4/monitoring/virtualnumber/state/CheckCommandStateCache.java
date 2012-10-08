@@ -4,8 +4,7 @@ import org.jboss.solder.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,10 +19,10 @@ public class CheckCommandStateCache {
     @Inject
     Logger log;
 
-    private final ConcurrentHashMap<UUID,CheckCommandState> stateCache;
+    private final ArrayList<CheckCommandState> stateCache;
 
     public CheckCommandStateCache() {
-        this.stateCache = new ConcurrentHashMap<UUID, CheckCommandState>();
+        this.stateCache = new ArrayList<CheckCommandState>();
     }
 
     public boolean isEmpty()
@@ -36,12 +35,12 @@ public class CheckCommandStateCache {
     }
 
     public void addState(CheckCommandState state) {
-        stateCache.put(state.getStateId(), state);
+        stateCache.add(state);
     }
 
     public void dumpCache()
     {
-        for(CheckCommandState state : stateCache.values())
+        for(CheckCommandState state : stateCache)
         {
             log.info("state: " + state.toString());
         }

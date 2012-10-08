@@ -14,6 +14,7 @@ import java.util.UUID;
  */
 public class CheckCommandState {
     private final UUID stateId;
+    private Instant startTime;
     private String documentId;
     private Instant submitTime;
     private String submitStatus;
@@ -28,6 +29,14 @@ public class CheckCommandState {
 
     public UUID getStateId() {
         return stateId;
+    }
+
+    public Instant getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Instant startTime) {
+        this.startTime = startTime;
     }
 
     public String getDocumentId() {

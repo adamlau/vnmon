@@ -4,7 +4,6 @@ import com.smspl.mc4.monitoring.HeartbeatEvent;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckCommandStateCache;
 import org.jboss.solder.logging.Logger;
 
-import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
 /**
@@ -14,13 +13,14 @@ import javax.inject.Inject;
  * Time: 4:47 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SubmitMessagesCommand extends BaseCommandStateCacheCommand {
+public class CheckAllNumbersCommand extends BaseCommandStateCacheCommand {
 
     @Inject
     Logger log;
 
     @Override
     protected void doTimedExecute(CheckCommandStateCache checkCommandStateCache, HeartbeatEvent heartbeatEvent) {
-        log.info("Executing in a timed fashion");
+
+
     }
 }

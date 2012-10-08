@@ -34,6 +34,7 @@ public class BaseCommandStateCacheCommand {
     }
 
     public void runChecks(@Observes HeartbeatEvent heartbeatEvent) {
+        log.infof("Executing timed command: %s", this.getClass().getCanonicalName());
         doTimedExecute(checkCommandStateCache, heartbeatEvent);
     }
 
