@@ -1,6 +1,9 @@
-package com.smspl.mc4.monitoring.virtualnumber;
+package com.smspl.mc4.monitoring.virtualnumber.commands;
 
-import org.jboss.solder.logging.Logger;
+import com.smspl.mc4.monitoring.virtualnumber.*;
+import com.smspl.mc4.monitoring.virtualnumber.state.CheckCommandState;
+import com.smspl.mc4.monitoring.virtualnumber.state.CheckCommandStateBuilder;
+import com.smspl.mc4.monitoring.virtualnumber.state.CheckCommandStateCache;
 
 import javax.inject.Inject;
 

@@ -41,7 +41,7 @@ public class HeartbeatEmitter {
         final Runnable emitter = new Runnable() {
             @Override
             public void run() {
-                log.infof("heartbeat: %s", Instant.now());
+                log.debugf("heartbeat: %s", Instant.now());
                 heartbeat.fire(new HeartbeatEvent());
             }
         };

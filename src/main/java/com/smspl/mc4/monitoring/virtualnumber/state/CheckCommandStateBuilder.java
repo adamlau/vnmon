@@ -1,4 +1,6 @@
-package com.smspl.mc4.monitoring.virtualnumber;
+package com.smspl.mc4.monitoring.virtualnumber.state;
+
+import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberTestConfig;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,7 +1,6 @@
 package com.smspl.mc4.monitoring;
 
-import com.smspl.mc4.monitoring.virtualnumber.CheckManager;
-import org.jboss.solder.logging.Log;
+import com.smspl.mc4.monitoring.virtualnumber.commands.RebuildCheckCommandStateCacheCommand;
 import org.jboss.solder.logging.Logger;
 import org.jboss.solder.servlet.WebApplication;
 import org.jboss.solder.servlet.event.Destroyed;
@@ -28,12 +27,12 @@ public class Startup {
     HeartbeatEmitter heartbeatEmitter;
 
     @Inject
-    CheckManager checkManager;
+    RebuildCheckCommandStateCacheCommand rebuildCommand;
 
     public void onStartup(@Observes @Started WebApplication webapp) {
         log.info("************************** Application at " + webapp.getContextPath() + " ready to handle requests");
+        rebuildCommand.execute();
         heartbeatEmitter.start();
-        checkManager.start();
     }
 
     public void onShutdown(@Observes @Destroyed WebApplication webapp)

@@ -1,14 +1,11 @@
-package com.smspl.mc4.monitoring.virtualnumber;
+package com.smspl.mc4.monitoring.virtualnumber.state;
 
 import org.jboss.solder.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
-import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.Lock;
 
 /**
  * Created with IntelliJ IDEA.
