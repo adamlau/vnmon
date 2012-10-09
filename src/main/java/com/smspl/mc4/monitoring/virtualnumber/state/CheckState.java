@@ -12,7 +12,7 @@ import java.util.UUID;
  * Time: 3:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CheckCommandState {
+public class CheckState {
     private final UUID stateId;
     private Instant startTime;
     private String documentId;
@@ -23,7 +23,7 @@ public class CheckCommandState {
     private Instant receiveTime;
     private VirtualNumberTestConfig testConfig;
 
-    public CheckCommandState() {
+    public CheckState() {
         this.stateId = UUID.randomUUID();
     }
 

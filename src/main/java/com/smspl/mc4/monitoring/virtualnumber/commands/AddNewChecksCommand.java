@@ -1,34 +1,37 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
-import com.smspl.mc4.monitoring.virtualnumber.*;
+import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberTestConfig;
+import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberTestConfigManager;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateBuilder;
-import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateStore;
 
 import javax.inject.Inject;
 
 /**
  * Created with IntelliJ IDEA.
- * User: adamlau
- * Date: 8/10/12
- * Time: 11:07 AM
+ * User: adam
+ * Date: 9/10/12
+ * Time: 1:43 PM
  * To change this template use File | Settings | File Templates.
  */
-public class RebuildCheckCommandStateCacheCommand extends BaseCommandStateCacheCommand {
+public class AddNewChecksCommand extends CheckStateStoreCommand {
 
     @Inject
     VirtualNumberTestConfigManager configManager;
 
     @Override
-    public void doExecute(CheckStateStore checkCommandStateCache) {
-        checkCommandStateCache.clear();
+    protected void doExecute() {
 
         for( VirtualNumberTestConfig config : configManager.getConfigs())
         {
             CheckState state = CheckStateBuilder.create().withTestConfig(config).build();
-            checkCommandStateCache.addState(state);
+            getCheckStateStore().addState(state);
         }
-        configManager.dumpVirtualNumberConfigs();
-        checkCommandStateCache.dumpCache();
     }
+
+    @Override
+    protected boolean canExecute() {
+        return isDue();
+    }
+
 }

@@ -1,7 +1,7 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
 import com.smspl.mc4.monitoring.HeartbeatEvent;
-import com.smspl.mc4.monitoring.virtualnumber.state.CheckCommandStateCache;
+import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateStore;
 import org.jboss.solder.logging.Logger;
 
 import javax.inject.Inject;
@@ -19,7 +19,7 @@ public class CheckSubmitMessagesCommand extends BaseCommandStateCacheCommand {
     Logger log;
 
     @Override
-    protected void doTimedExecute(CheckCommandStateCache checkCommandStateCache, HeartbeatEvent heartbeatEvent) {
+    protected void doTimedExecute(CheckStateStore checkCommandStateCache, HeartbeatEvent heartbeatEvent) {
         log.info("Executing in a timed fashion");
     }
 }

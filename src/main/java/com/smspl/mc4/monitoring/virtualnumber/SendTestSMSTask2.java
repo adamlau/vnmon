@@ -1,6 +1,6 @@
 package com.smspl.mc4.monitoring.virtualnumber;
 
-import com.smspl.mc4.monitoring.virtualnumber.state.CheckCommandStateCache;
+import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateStore;
 import com.smspl.mc4.monitoring.virtualnumber.rest.SendSMSService;
 import com.smspl.mc4.monitoring.virtualnumber.rest.SubmitStatusEx;
 import org.jboss.seam.rest.client.RestClient;
@@ -19,7 +19,7 @@ import javax.inject.Inject;
 public class SendTestSMSTask2 {
 
     @Inject
-    CheckCommandStateCache stateCache;
+    CheckStateStore stateCache;
 
     @Inject
     Logger log;

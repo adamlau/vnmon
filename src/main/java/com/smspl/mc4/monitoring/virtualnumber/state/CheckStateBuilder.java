@@ -9,27 +9,27 @@ import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberTestConfig;
  * Time: 11:15 AM
  * To change this template use File | Settings | File Templates.
  */
-public class CheckCommandStateBuilder {
+public class CheckStateBuilder {
 
-    private CheckCommandState checkCommandState;
+    private CheckState checkCommandState;
 
-    private CheckCommandStateBuilder()
+    private CheckStateBuilder()
     {
-        checkCommandState = new CheckCommandState();
+        checkCommandState = new CheckState();
     }
 
-    public static CheckCommandStateBuilder create()
+    public static CheckStateBuilder create()
     {
-        return new CheckCommandStateBuilder();
+        return new CheckStateBuilder();
     }
 
-    public CheckCommandStateBuilder withTestConfig(VirtualNumberTestConfig testConfig)
+    public CheckStateBuilder withTestConfig(VirtualNumberTestConfig testConfig)
     {
         checkCommandState.setTestConfig(testConfig);
         return this;
     }
 
-    public CheckCommandState build() {
+    public CheckState build() {
         return checkCommandState;
     }
 }

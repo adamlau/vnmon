@@ -5,6 +5,7 @@ import org.jboss.solder.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,15 +15,15 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 @ApplicationScoped
-public class CheckCommandStateCache {
+public class CheckStateStore {
 
     @Inject
     Logger log;
 
-    private final ArrayList<CheckCommandState> stateCache;
+    private final ArrayList<CheckState> stateCache;
 
-    public CheckCommandStateCache() {
-        this.stateCache = new ArrayList<CheckCommandState>();
+    public CheckStateStore() {
+        this.stateCache = new ArrayList<CheckState>();
     }
 
     public boolean isEmpty()
@@ -34,16 +35,20 @@ public class CheckCommandStateCache {
         stateCache.clear();
     }
 
-    public void addState(CheckCommandState state) {
+    public void addState(CheckState state) {
         stateCache.add(state);
     }
 
     public void dumpCache()
     {
-        for(CheckCommandState state : stateCache)
+        for(CheckState state : stateCache)
         {
             log.info("state: " + state.toString());
         }
     }
 
+    public Collection<CheckState> getStates()
+    {
+        return this.stateCache;
+    }
 }

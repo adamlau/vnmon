@@ -1,7 +1,7 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
 import com.smspl.mc4.monitoring.HeartbeatEvent;
-import com.smspl.mc4.monitoring.virtualnumber.state.CheckCommandStateCache;
+import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateStore;
 import org.jboss.solder.logging.Logger;
 
 import javax.enterprise.event.Observes;
@@ -17,7 +17,7 @@ import javax.inject.Inject;
 public class BaseCommandStateCacheCommand {
 
     @Inject
-    CheckCommandStateCache checkCommandStateCache;
+    CheckStateStore checkCommandStateCache;
 
     @Inject
     Logger log;
@@ -27,10 +27,10 @@ public class BaseCommandStateCacheCommand {
         doExecute(checkCommandStateCache);
     }
 
-    protected void doExecute(CheckCommandStateCache checkCommandStateCache) {
+    protected void doExecute(CheckStateStore checkCommandStateCache) {
     }
 
-    protected void doTimedExecute(CheckCommandStateCache checkCommandStateCache, HeartbeatEvent heartbeatEvent) {
+    protected void doTimedExecute(CheckStateStore checkCommandStateCache, HeartbeatEvent heartbeatEvent) {
     }
 
     public void runChecks(@Observes HeartbeatEvent heartbeatEvent) {
