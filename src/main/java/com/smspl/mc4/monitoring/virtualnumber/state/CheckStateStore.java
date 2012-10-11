@@ -8,11 +8,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adamlau
  * Date: 4/10/12
- * Time: 10:53 AM
- * To change this template use File | Settings | File Templates.
  */
 @ApplicationScoped
 public class CheckStateStore {

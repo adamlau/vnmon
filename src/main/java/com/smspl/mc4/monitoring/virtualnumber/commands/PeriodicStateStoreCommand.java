@@ -3,11 +3,8 @@ package com.smspl.mc4.monitoring.virtualnumber.commands;
 import java.util.GregorianCalendar;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adam
  * Date: 11/10/12
- * Time: 3:05 PM
- * To change this template use File | Settings | File Templates.
  */
 public abstract class PeriodicStateStoreCommand extends CheckStateStoreCommand {
 
@@ -31,8 +28,7 @@ public abstract class PeriodicStateStoreCommand extends CheckStateStoreCommand {
     }
 
     private boolean isDue() {
-        boolean isDue = getHeartbeatEvent().isDue(due);
-        return isDue;
+        return getHeartbeatEvent().isDue(due);
     }
 
     private void makeDueNow()

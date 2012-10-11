@@ -1,11 +1,8 @@
 package com.smspl.mc4.monitoring.virtualnumber.rest;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adamlau
  * Date: 2/10/12
- * Time: 3:56 PM
- * To change this template use File | Settings | File Templates.
  */
 public class SubmitStatusEx {
 

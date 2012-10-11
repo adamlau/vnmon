@@ -10,11 +10,8 @@ import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adamlau
  * Date: 3/10/12
- * Time: 2:13 PM
- * To change this template use File | Settings | File Templates.
  */
 @ApplicationScoped
 public class Startup {

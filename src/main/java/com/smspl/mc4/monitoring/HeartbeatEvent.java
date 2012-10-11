@@ -4,11 +4,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adamlau
  * Date: 3/10/12
- * Time: 1:50 PM
- * To change this template use File | Settings | File Templates.
  */
 public class HeartbeatEvent {
     private Calendar calendar;

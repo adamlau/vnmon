@@ -7,11 +7,8 @@ import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adam
  * Date: 9/10/12
- * Time: 1:29 PM
- * To change this template use File | Settings | File Templates.
  */
 public class CommandExecutor {
 

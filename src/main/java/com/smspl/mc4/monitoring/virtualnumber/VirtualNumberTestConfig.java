@@ -1,13 +1,8 @@
 package com.smspl.mc4.monitoring.virtualnumber;
 
-import org.joda.time.Duration;
-
 /**
- * Created with IntelliJ IDEA.
  * User: adamlau
  * Date: 3/10/12
- * Time: 2:56 PM
- * To change this template use File | Settings | File Templates.
  */
 public class VirtualNumberTestConfig {
 

@@ -11,11 +11,8 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adamlau
  * Date: 3/10/12
- * Time: 1:51 PM
- * To change this template use File | Settings | File Templates.
  */
 public class HeartbeatEmitter {
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);

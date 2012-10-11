@@ -9,11 +9,8 @@ import org.jboss.seam.rest.client.RestClient;
 import javax.inject.Inject;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adam
  * Date: 11/10/12
- * Time: 2:50 PM
- * To change this template use File | Settings | File Templates.
  */
 public class SubmitSmsForNewChecks extends CheckStateCommand {
 
@@ -23,7 +20,7 @@ public class SubmitSmsForNewChecks extends CheckStateCommand {
 
     @Override
     protected boolean accept(CheckState state) {
-        return ( state.getDocumentId() == null);
+        return ( !state.hasSmsMessageBeenSubmitted() );
     }
 
     @Override

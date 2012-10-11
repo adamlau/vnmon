@@ -6,11 +6,8 @@ import com.smspl.mc4.monitoring.virtualnumber.rest.SubmitStatusEx;
 import java.util.GregorianCalendar;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adamlau
  * Date: 8/10/12
- * Time: 11:15 AM
- * To change this template use File | Settings | File Templates.
  */
 public class CheckStateBuilder {
 

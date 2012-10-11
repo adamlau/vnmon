@@ -7,11 +7,8 @@ import org.jboss.solder.logging.Logger;
 import javax.inject.Inject;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adam
  * Date: 9/10/12
- * Time: 1:54 PM
- * To change this template use File | Settings | File Templates.
  */
 public abstract class CheckStateStoreCommand implements CheckCommand {
 

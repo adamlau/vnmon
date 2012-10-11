@@ -7,11 +7,8 @@ import java.util.GregorianCalendar;
 import java.util.UUID;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adamlau
  * Date: 3/10/12
- * Time: 3:19 PM
- * To change this template use File | Settings | File Templates.
  */
 public class CheckState {
     private final UUID stateId;
@@ -27,6 +24,11 @@ public class CheckState {
     public CheckState() {
         this.stateId = UUID.randomUUID();
         this.startTime = new GregorianCalendar();
+    }
+
+    public boolean hasSmsMessageBeenSubmitted()
+    {
+        return ( documentId != null || submitStatus != null || submitTime != null );
     }
 
     public UUID getStateId() {

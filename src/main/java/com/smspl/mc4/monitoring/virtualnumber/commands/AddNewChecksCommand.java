@@ -8,11 +8,8 @@ import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateBuilder;
 import javax.inject.Inject;
 
 /**
- * Created with IntelliJ IDEA.
  * User: adam
  * Date: 9/10/12
- * Time: 1:43 PM
- * To change this template use File | Settings | File Templates.
  */
 public class AddNewChecksCommand extends PeriodicStateStoreCommand {
 
