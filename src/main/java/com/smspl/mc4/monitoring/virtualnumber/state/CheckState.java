@@ -16,7 +16,7 @@ public class CheckState {
     private String documentId;
     private GregorianCalendar submitTime;
     private String submitStatus;
-    private Instant deliveryReceiptTime;
+    private GregorianCalendar deliveryReceiptTime;
     private String deliveryReceiptStatus;
     private Instant receiveTime;
     private VirtualNumberConfig testConfig;
@@ -59,7 +59,7 @@ public class CheckState {
         this.submitStatus = submitStatus;
     }
 
-    public void setDeliveryReceiptTime(Instant deliveryReceiptTime) {
+    public void setDeliveryReceiptTime(GregorianCalendar deliveryReceiptTime) {
         this.deliveryReceiptTime = deliveryReceiptTime;
     }
 
@@ -75,7 +75,7 @@ public class CheckState {
         return submitStatus;
     }
 
-    public Instant getDeliveryReceiptTime() {
+    public GregorianCalendar getDeliveryReceiptTime() {
         return deliveryReceiptTime;
     }
 

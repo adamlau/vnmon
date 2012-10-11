@@ -4,8 +4,10 @@ import org.jboss.solder.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * User: adamlau
@@ -17,10 +19,10 @@ public class CheckStateStore {
     @Inject
     Logger log;
 
-    private final ArrayList<CheckState> stateCache;
+    private final ConcurrentHashMap<UUID,CheckState> stateCache;
 
     public CheckStateStore() {
-        this.stateCache = new ArrayList<CheckState>();
+        this.stateCache = new ConcurrentHashMap<UUID,CheckState>();
     }
 
     public boolean isEmpty()
@@ -33,19 +35,25 @@ public class CheckStateStore {
     }
 
     public void addState(CheckState state) {
-        stateCache.add(state);
+        stateCache.put(state.getStateId(), state);
     }
 
     public void dumpCache()
     {
-        for(CheckState state : stateCache)
+        for(CheckState state : stateCache.values())
         {
             log.info("state: " + state.toString());
         }
     }
 
-    public Collection<CheckState> getStates()
+    public Set<Map.Entry<UUID, CheckState>> getStates()
     {
-        return this.stateCache;
+        return this.stateCache.entrySet();
     }
+
+    public CheckState get(UUID stateId)
+    {
+        return this.stateCache.get(stateId);
+    }
+
 }

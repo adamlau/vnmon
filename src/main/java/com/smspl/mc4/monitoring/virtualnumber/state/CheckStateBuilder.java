@@ -47,6 +47,13 @@ public class CheckStateBuilder {
         return this;
     }
 
+    public CheckStateBuilder withDeliveryStatus(DeliveryReceiptState deliveryReceiptState)
+    {
+        checkCommandState.setDeliveryReceiptStatus(deliveryReceiptState.getDeliveryReceiptStatus());
+        checkCommandState.setDeliveryReceiptTime(deliveryReceiptState.getDeliveryReceiptTime());
+        return this;
+    }
+
     public CheckState build() {
         return checkCommandState;
     }

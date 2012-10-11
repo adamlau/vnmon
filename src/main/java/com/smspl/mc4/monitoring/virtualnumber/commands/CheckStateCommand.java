@@ -3,6 +3,8 @@ package com.smspl.mc4.monitoring.virtualnumber.commands;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 
 import java.util.Iterator;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * CheckStateCommand will iterate over the CheckStateStore and offer each entry
@@ -17,10 +19,10 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
 
     @Override
     protected final void doExecute() {
-        Iterator<CheckState> stateIterator = checkStateStore.getStates().iterator();
+        Iterator<Map.Entry<UUID,CheckState>> stateIterator = checkStateStore.getStates().iterator();
         while(stateIterator.hasNext())
         {
-            CheckState currentState = stateIterator.next();
+            CheckState currentState = stateIterator.next().getValue();
             if(accept(currentState))
                 try
                 {

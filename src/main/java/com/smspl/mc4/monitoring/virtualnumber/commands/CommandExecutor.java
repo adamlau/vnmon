@@ -15,14 +15,15 @@ public class CommandExecutor {
     @Inject Logger log;
     @Inject AddNewChecksCommand addNewChecksCommand;
     @Inject SubmitSmsForNewChecks submitSmsForNewChecks;
-    @Inject CheckSubmitResponseTime checkSubmitResponseTime;
+    @Inject CheckDeliveryReceiptResponseTime checkDeliveryReceiptResponseTime;
+    @Inject CheckInboundSmsResponseTime checkInboundSmsResponseTime;
 
     public void runChecks(@Observes HeartbeatEvent heartbeatEvent) {
-        log.info("Running checks");
+        log.info("Running checks...");
         addNewChecksCommand.execute(heartbeatEvent);
         submitSmsForNewChecks.execute(heartbeatEvent);
-        //check submit responses expiry - add to errors  and remove
-        //check delivery response expiry - add to errors and remove
-        //check push deliver sm expiry   - add to errors and remove
+        checkDeliveryReceiptResponseTime.execute(heartbeatEvent);
+        checkInboundSmsResponseTime.execute(heartbeatEvent);
+        log.info("Finished checks...");
     }
 }
