@@ -1,6 +1,6 @@
 package com.smspl.mc4.monitoring.virtualnumber.state;
 
-import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberTestConfig;
+import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberConfig;
 import org.joda.time.Instant;
 
 import java.util.GregorianCalendar;
@@ -19,7 +19,7 @@ public class CheckState {
     private Instant deliveryReceiptTime;
     private String deliveryReceiptStatus;
     private Instant receiveTime;
-    private VirtualNumberTestConfig testConfig;
+    private VirtualNumberConfig testConfig;
 
     public CheckState() {
         this.stateId = UUID.randomUUID();
@@ -87,11 +87,11 @@ public class CheckState {
         return receiveTime;
     }
 
-    public void setTestConfig(VirtualNumberTestConfig testConfig) {
+    public void setTestConfig(VirtualNumberConfig testConfig) {
         this.testConfig = testConfig;
     }
 
-    public VirtualNumberTestConfig getTestConfig() {
+    public VirtualNumberConfig getTestConfig() {
         return testConfig;
     }
 }

@@ -11,21 +11,21 @@ import javax.inject.Inject;
  * Date: 8/10/12
  */
 @ApplicationScoped
-public class VirtualNumberTestConfigManager {
+public class VirtualNumberConfigManager {
 
     @Inject
     Logger log;
 
     // gets injected by beans.xml
-    Instance<VirtualNumberTestConfig> checkConfigs;
+    Instance<VirtualNumberConfig> checkConfigs;
 
-    public Instance<VirtualNumberTestConfig> getConfigs()
+    public Instance<VirtualNumberConfig> getConfigs()
     {
         return checkConfigs;
     }
 
     public void dumpVirtualNumberConfigs() {
-        for (VirtualNumberTestConfig config : checkConfigs) {
+        for (VirtualNumberConfig config : checkConfigs) {
             log.infof("\nmonitoring: %s", config.toString());
         }
     }

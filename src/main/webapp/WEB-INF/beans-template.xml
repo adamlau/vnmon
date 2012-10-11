@@ -27,20 +27,20 @@
         <vn:periodInSeconds>60</vn:periodInSeconds>
     </vn:AddNewChecksCommand>
 
-    <vn:VirtualNumberTestConfigManager>
+    <vn:VirtualNumberConfigManager>
         <s:modifies/>
         <vn:checkConfigs>
             <s:Any/>
             <s:Inject/>
         </vn:checkConfigs>
-    </vn:VirtualNumberTestConfigManager>
+    </vn:VirtualNumberConfigManager>
 
-    <vn:VirtualNumberTestConfig>
+    <vn:VirtualNumberConfig>
         <s:modifies/>
         <vn:username>a</vn:username>
         <vn:password>a</vn:password>
         <vn:recipient>a</vn:recipient>
         <vn:sender>a</vn:sender>
-    </vn:VirtualNumberTestConfig>
+    </vn:VirtualNumberConfig>
 
 </beans>

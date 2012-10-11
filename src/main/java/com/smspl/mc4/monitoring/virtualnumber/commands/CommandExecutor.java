@@ -15,6 +15,7 @@ public class CommandExecutor {
     @Inject Logger log;
     @Inject AddNewChecksCommand addNewChecksCommand;
     @Inject SubmitSmsForNewChecks submitSmsForNewChecks;
+    @Inject CheckSubmitResponseTime checkSubmitResponseTime;
 
     public void runChecks(@Observes HeartbeatEvent heartbeatEvent) {
         log.info("Running checks");

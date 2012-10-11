@@ -25,7 +25,7 @@ public class SubmitSmsForNewChecks extends CheckStateCommand {
 
     @Override
     protected void process(CheckState state) {
-        log.infof("Submitting new message %s: %s", state.getStateId().toString(), state.getTestConfig().toString());
+        log.infof("Submitting new message %s: %s", state.getStateId(), state.getTestConfig().toString());
         SubmitStatusEx status = sendSMSService.sendSingle2(
                 state.getTestConfig().getUsername(),
                 state.getTestConfig().getPassword(),

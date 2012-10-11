@@ -1,6 +1,6 @@
 package com.smspl.mc4.monitoring.virtualnumber.state;
 
-import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberTestConfig;
+import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberConfig;
 import com.smspl.mc4.monitoring.virtualnumber.rest.SubmitStatusEx;
 
 import java.util.GregorianCalendar;
@@ -33,7 +33,7 @@ public class CheckStateBuilder {
         return new CheckStateBuilder();
     }
 
-    public CheckStateBuilder withTestConfig(VirtualNumberTestConfig testConfig)
+    public CheckStateBuilder withTestConfig(VirtualNumberConfig testConfig)
     {
         checkCommandState.setTestConfig(testConfig);
         return this;

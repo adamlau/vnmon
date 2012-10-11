@@ -4,7 +4,7 @@ package com.smspl.mc4.monitoring.virtualnumber;
  * User: adamlau
  * Date: 3/10/12
  */
-public class VirtualNumberTestConfig {
+public class VirtualNumberConfig {
 
     private String username;
     private String password;
