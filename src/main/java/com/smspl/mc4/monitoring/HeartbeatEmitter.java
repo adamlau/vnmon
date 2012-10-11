@@ -3,10 +3,6 @@ package com.smspl.mc4.monitoring;
 import org.jboss.solder.logging.Logger;
 import org.joda.time.Instant;
 
-import javax.ejb.Schedule;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import java.util.concurrent.Executors;
@@ -41,8 +37,12 @@ public class HeartbeatEmitter {
         final Runnable emitter = new Runnable() {
             @Override
             public void run() {
-                log.debugf("heartbeat: %s", Instant.now());
-                heartbeat.fire(new HeartbeatEvent());
+                try {
+                    log.debugf("heartbeat: %s", Instant.now());
+                    heartbeat.fire(new HeartbeatEvent());
+                } catch (Exception e) {
+                    log.error(e);
+                }
             }
         };
 
@@ -50,8 +50,7 @@ public class HeartbeatEmitter {
     }
 
     public void stop() {
-        if( emitterHandle != null )
-        {
+        if (emitterHandle != null) {
             log.info("Stopping HeartbeatEmitter.");
             emitterHandle.cancel(true);
         }

@@ -3,6 +3,7 @@ package com.smspl.mc4.monitoring.virtualnumber.state;
 import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberTestConfig;
 import org.joda.time.Instant;
 
+import java.util.GregorianCalendar;
 import java.util.UUID;
 
 /**
@@ -14,9 +15,9 @@ import java.util.UUID;
  */
 public class CheckState {
     private final UUID stateId;
-    private Instant startTime;
+    private final GregorianCalendar startTime;
     private String documentId;
-    private Instant submitTime;
+    private GregorianCalendar submitTime;
     private String submitStatus;
     private Instant deliveryReceiptTime;
     private String deliveryReceiptStatus;
@@ -25,26 +26,47 @@ public class CheckState {
 
     public CheckState() {
         this.stateId = UUID.randomUUID();
+        this.startTime = new GregorianCalendar();
     }
 
     public UUID getStateId() {
         return stateId;
     }
 
-    public Instant getStartTime() {
+    public GregorianCalendar getStartTime() {
         return startTime;
-    }
-
-    public void setStartTime(Instant startTime) {
-        this.startTime = startTime;
     }
 
     public String getDocumentId() {
         return documentId;
     }
 
-    public Instant getSubmitTime() {
+    public GregorianCalendar getSubmitTime() {
         return submitTime;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    public void setSubmitTime(GregorianCalendar submitTime) {
+        this.submitTime = submitTime;
+    }
+
+    public void setSubmitStatus(String submitStatus) {
+        this.submitStatus = submitStatus;
+    }
+
+    public void setDeliveryReceiptTime(Instant deliveryReceiptTime) {
+        this.deliveryReceiptTime = deliveryReceiptTime;
+    }
+
+    public void setDeliveryReceiptStatus(String deliveryReceiptStatus) {
+        this.deliveryReceiptStatus = deliveryReceiptStatus;
+    }
+
+    public void setReceiveTime(Instant receiveTime) {
+        this.receiveTime = receiveTime;
     }
 
     public String getSubmitStatus() {
@@ -65,5 +87,9 @@ public class CheckState {
 
     public void setTestConfig(VirtualNumberTestConfig testConfig) {
         this.testConfig = testConfig;
+    }
+
+    public VirtualNumberTestConfig getTestConfig() {
+        return testConfig;
     }
 }

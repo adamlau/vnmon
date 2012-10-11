@@ -1,6 +1,9 @@
 package com.smspl.mc4.monitoring.virtualnumber.state;
 
 import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberTestConfig;
+import com.smspl.mc4.monitoring.virtualnumber.rest.SubmitStatusEx;
+
+import java.util.GregorianCalendar;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,6 +21,16 @@ public class CheckStateBuilder {
         checkCommandState = new CheckState();
     }
 
+    private CheckStateBuilder(CheckState checkState)
+    {
+        this.checkCommandState = checkState;
+    }
+
+    public static CheckStateBuilder update(CheckState checkState)
+    {
+        return new CheckStateBuilder(checkState);
+    }
+
     public static CheckStateBuilder create()
     {
         return new CheckStateBuilder();
@@ -26,6 +39,14 @@ public class CheckStateBuilder {
     public CheckStateBuilder withTestConfig(VirtualNumberTestConfig testConfig)
     {
         checkCommandState.setTestConfig(testConfig);
+        return this;
+    }
+
+    public CheckStateBuilder withSubmitStatus(SubmitStatusEx status)
+    {
+        checkCommandState.setDocumentId(status.getDocumentId());
+        checkCommandState.setSubmitStatus(String.valueOf(status.getMessageStatus()));
+        checkCommandState.setSubmitTime(new GregorianCalendar());
         return this;
     }
 

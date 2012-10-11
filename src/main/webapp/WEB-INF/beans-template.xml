@@ -2,7 +2,7 @@
 <beans xmlns="http://java.sun.com/xml/ns/javaee"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:s="urn:java:ee"
-       xmlns:vn="urn:java:com.smspl.mc4.monitoring.virtualnumber:org.jboss.seam.rest.client"
+       xmlns:vn="urn:java:com.smspl.mc4.monitoring.virtualnumber:com.smspl.mc4.monitoring.virtualnumber.commands:org.jboss.seam.rest.client"
        xmlns:mn="urn:java:com.smspl.mc4.monitoring"
        xsi:schemaLocation="
         http://java.sun.com/xml/ns/javaee
@@ -21,6 +21,11 @@
             <vn:RestClient value="https://primary.smartmessagingservices.net/mc54"/>
         </vn:sendSMSService>
     </vn:SendTestSMSTask2>
+
+    <vn:AddNewChecksCommand>
+        <s:modifies/>
+        <vn:periodInSeconds>60</vn:periodInSeconds>
+    </vn:AddNewChecksCommand>
 
     <vn:VirtualNumberTestConfigManager>
         <s:modifies/>

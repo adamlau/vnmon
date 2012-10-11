@@ -14,7 +14,7 @@ import javax.inject.Inject;
  * Time: 1:43 PM
  * To change this template use File | Settings | File Templates.
  */
-public class AddNewChecksCommand extends CheckStateStoreCommand {
+public class AddNewChecksCommand extends PeriodicStateStoreCommand {
 
     @Inject
     VirtualNumberTestConfigManager configManager;
@@ -24,14 +24,11 @@ public class AddNewChecksCommand extends CheckStateStoreCommand {
 
         for( VirtualNumberTestConfig config : configManager.getConfigs())
         {
+            log.infof("Adding check: %s", config.toString());
             CheckState state = CheckStateBuilder.create().withTestConfig(config).build();
-            getCheckStateStore().addState(state);
+            checkStateStore.addState(state);
         }
-    }
 
-    @Override
-    protected boolean canExecute() {
-        return isDue();
     }
 
 }

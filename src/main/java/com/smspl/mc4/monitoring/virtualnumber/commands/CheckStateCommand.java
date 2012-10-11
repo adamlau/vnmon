@@ -12,14 +12,14 @@ import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 public abstract class CheckStateCommand extends CheckStateStoreCommand {
 
     @Override
-    protected void doExecute() {
-        for(CheckState state : getCheckStateStore().getStates())
+    protected final void doExecute() {
+        for(CheckState state : checkStateStore.getStates())
         {
-            if(canExecute(state))
-                doExecute(state);
+            if(accept(state))
+                process(state);
         }
     }
 
-    protected abstract boolean canExecute(CheckState state);
-    protected abstract void doExecute(CheckState state);
+    protected abstract boolean accept(CheckState state);
+    protected abstract void process(CheckState state);
 }

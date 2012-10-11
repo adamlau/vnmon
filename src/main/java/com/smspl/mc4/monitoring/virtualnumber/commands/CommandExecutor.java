@@ -17,12 +17,12 @@ public class CommandExecutor {
 
     @Inject Logger log;
     @Inject AddNewChecksCommand addNewChecksCommand;
+    @Inject SubmitSmsForNewChecks submitSmsForNewChecks;
 
     public void runChecks(@Observes HeartbeatEvent heartbeatEvent) {
-
+        log.info("Running checks");
         addNewChecksCommand.execute(heartbeatEvent);
-        //add new checks if heartbeart event is due
-        //submit messages for new checks
+        submitSmsForNewChecks.execute(heartbeatEvent);
         //check submit responses expiry - add to errors  and remove
         //check delivery response expiry - add to errors and remove
         //check push deliver sm expiry   - add to errors and remove

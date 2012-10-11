@@ -50,8 +50,18 @@ public class HeartbeatEvent {
     public boolean isQuarterHour() {
         return isMinuteInterval(15);
     }
+
     public boolean isDue(GregorianCalendar due)
     {
+        if( due == null ) return true;
+
         return calendar.after(due);
+    }
+
+    public GregorianCalendar getDueNext(int periodInSeconds)
+    {
+        GregorianCalendar calendarCopy = (GregorianCalendar)calendar.clone();
+        calendarCopy.add(Calendar.SECOND, periodInSeconds);
+        return calendarCopy;
     }
 }

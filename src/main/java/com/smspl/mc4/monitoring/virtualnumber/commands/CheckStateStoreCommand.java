@@ -2,10 +2,9 @@ package com.smspl.mc4.monitoring.virtualnumber.commands;
 
 import com.smspl.mc4.monitoring.HeartbeatEvent;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateStore;
+import org.jboss.solder.logging.Logger;
 
 import javax.inject.Inject;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,36 +15,43 @@ import java.util.GregorianCalendar;
  */
 public abstract class CheckStateStoreCommand implements CheckCommand {
 
-    HeartbeatEvent heartbeatEvent;
-    @Inject CheckStateStore checkStateStore;
+    private HeartbeatEvent heartbeatEvent;
 
-    protected static GregorianCalendar due = new GregorianCalendar();
-    protected static Integer periodInSeconds = 10;
+    @Inject
+    CheckStateStore checkStateStore;
+
+    @Inject
+    Logger log;
 
     @Override
-    public void execute(HeartbeatEvent heartbeatEvent)
-    {
+    public void execute(HeartbeatEvent heartbeatEvent) {
         this.heartbeatEvent = heartbeatEvent;
-        if( canExecute() )
-            doExecute();
+        try {
+            doPreExecute();
+            if (canExecute()) {
+                doExecute();
+                doPostExecute();
+            }
+        } catch (Exception e) {
+            log.error(e);
+        }
 
-        due.add(Calendar.SECOND, periodInSeconds);
     }
 
-    protected HeartbeatEvent getHeartbeatEvent()
-    {
-        return this.heartbeatEvent;
+    protected void doPreExecute() {
     }
 
-    protected CheckStateStore getCheckStateStore()
-    {
-        return this.checkStateStore;
+    protected boolean canExecute() {
+        return true;
     }
 
     protected abstract void doExecute();
-    protected boolean canExecute() { return true; }
 
-    protected boolean isDue() {
-        return getHeartbeatEvent().isDue(due);
+    protected void doPostExecute() {
     }
+
+    protected HeartbeatEvent getHeartbeatEvent() {
+        return this.heartbeatEvent;
+    }
+
 }
