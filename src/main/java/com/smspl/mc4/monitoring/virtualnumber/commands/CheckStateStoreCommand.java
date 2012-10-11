@@ -7,8 +7,17 @@ import org.jboss.solder.logging.Logger;
 import javax.inject.Inject;
 
 /**
- * CheckStateStoreCommand expose the CheckStateStore so that it can be manipulated
- * as a whole.
+ * CheckStateStoreCommand exposes the CheckStateStore so that it can be manipulated
+ * as a whole. It uses the following template to execute the command:
+ * <pre>
+ * {@code
+ * doPreExecute();
+ * if (canExecute()) {
+ *  doExecute();
+ *  doPostExecute();
+ *  }
+ * }
+ * </pre>
  *
  * User: adam
  * Date: 9/10/12
@@ -42,30 +51,17 @@ public abstract class CheckStateStoreCommand implements CheckCommand {
         return this.heartbeatEvent;
     }
 
-    /// methods that can be overridden/implemented in concrete commands
-
     /**
+     * Default action: nothing
      * Use this method to set up any state that may be required for the command
      * to run. Is executed before @see canExecute() .
-     * Default action: nothing
-     *
-     * doPreExecute();
-     * if (canExecute()) {
-     *  doExecute();
-     *  doPostExecute();
-     *  }
      */
     protected void doPreExecute() { }
 
     /**
+     * Default action: returns true
      * Use this method to indicate that the command should be executed.
      * doPreExecute();
-     * Default action: returns true
-     *
-     * if (canExecute()) {
-     *  doExecute();
-     *  doPostExecute();
-     *  }
      * @return Default true. Indicates that the command can be executed.
      */
     protected boolean canExecute() { return true; }
@@ -76,13 +72,8 @@ public abstract class CheckStateStoreCommand implements CheckCommand {
     protected abstract void doExecute();
 
     /**
-     * Use this method to set command state after execution has taken place.
      * Default action: nothing
-     *
-     * if (canExecute()) {
-     *  doExecute();
-     *  doPostExecute();
-     *  }
+     * Use this method to set any command state after execution has taken place.
      */
     protected void doPostExecute() { }
 

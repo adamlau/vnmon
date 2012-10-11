@@ -34,7 +34,7 @@ public class ProcessEndPoint {
      * @param status
      * @param timeStamp
      * @param sourceAddress
-     * @return
+     * @return OK_RESPONSE regardless of outcome
      */
     @GET
     @Path("/dr")
@@ -45,7 +45,7 @@ public class ProcessEndPoint {
                                          @QueryParam("sourceAddress") String sourceAddress)
     {
         try {
-            DeliveryReceiptState deliveryReceiptState = new DeliveryReceiptState()
+            //DeliveryReceiptState deliveryReceiptState = new DeliveryReceiptState();
         } catch (Exception e) {
             log.error(e);
         }
@@ -59,7 +59,7 @@ public class ProcessEndPoint {
      * @param status
      * @param timeStamp
      * @param sourceAddress
-     * @return
+     * @return OK_RESPONSE regardless of outcome
      */
     @GET
     @Path("/sms")

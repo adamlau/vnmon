@@ -9,8 +9,10 @@ import java.util.UUID;
 /**
  * CheckStateCommand will iterate over the CheckStateStore and offer each entry
  * up for processing.
- * Each entry can be accepted for execution - @see accept(CheckState state)
- * and processed - @see process(CheckState state)
+ * <p>
+ * Each entry can be accepted for execution using <code>accept(CheckState state)</code>
+ * <p>
+ * Each entry once accpeted will be proccessed by <code>process(CheckState state)</code>
  *
  * User: adam
  * Date: 9/10/12
