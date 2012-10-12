@@ -1,4 +1,4 @@
-package com.smspl.mc4.monitoring.virtualnumber;
+package com.smspl.mc4.monitoring.virtualnumber.config;
 
 /**
  * User: adamlau

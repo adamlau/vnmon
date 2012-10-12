@@ -1,7 +1,6 @@
 package com.smspl.mc4.monitoring.virtualnumber.state;
 
-import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberConfig;
-import org.joda.time.Instant;
+import com.smspl.mc4.monitoring.virtualnumber.config.VirtualNumberConfig;
 
 import java.util.GregorianCalendar;
 import java.util.UUID;

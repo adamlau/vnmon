@@ -1,6 +1,5 @@
-package com.smspl.mc4.monitoring.virtualnumber;
+package com.smspl.mc4.monitoring.virtualnumber.commands;
 
-import com.smspl.mc4.monitoring.virtualnumber.commands.CheckStateStoreCommand;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 
 /**
@@ -13,7 +12,7 @@ public class DumpCacheCommand extends CheckStateStoreCommand {
     @Override
     protected void doExecute() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\ncache dump at: " + getHeartbeatEvent().getDueNext(0).getTime() );
+        sb.append("Cache dump at: " + getHeartbeatEvent().getDueNext(0).getTime() );
         for (CheckState state : getCheckStateStore().getStates()) {
             sb.append("\n" + state.toString());
         }

@@ -1,7 +1,7 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
-import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberConfig;
-import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberConfigManager;
+import com.smspl.mc4.monitoring.virtualnumber.config.VirtualNumberConfig;
+import com.smspl.mc4.monitoring.virtualnumber.config.VirtualNumberConfigManager;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateBuilder;
 
