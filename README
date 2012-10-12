@@ -1,7 +1,7 @@
 Overview
 ===========
 This app can be used to monitor the delivery performance of virtual numbers for an SMS gateway.
-When an expected message isn't received on a virtual number within a configurable timeframe the sysadmin will receive and email and/or SMS.
+When an expected message isn't received on a virtual number within a configurable timeframe the sysadmin will receive an email and/or SMS.
 
 Usage
 ===========
@@ -10,7 +10,7 @@ Usage
 
 Notes
 ===========
-- The VirtualNumberCheckExecutor is the main execution process of the app. It is executed by observing HeartbeatEvent.
+- The VirtualNumberCheckExecutor is the main execution process of the app. It is executed by a timer.
 - The state of all the checks are held in CheckStateStore
 - REST endpoint for Delivery Receipt and Inbound SMS push processing located at <context>/rest/process. See classes in package com.smspl.mc4.monitoring.virtualnumber.rest
 
