@@ -20,7 +20,7 @@ public class SubmitSmsForNewChecks extends CheckStateCommand {
 
     @Override
     protected boolean accept(CheckState state) {
-        return ( !state.hasSmsMessageBeenSubmitted() );
+        return state.isInPhase(CheckState.Phase.ADDED);
     }
 
     @Override

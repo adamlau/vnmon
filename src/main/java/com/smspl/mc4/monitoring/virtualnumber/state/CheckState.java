@@ -18,17 +18,12 @@ public class CheckState {
     private String submitStatus;
     private GregorianCalendar deliveryReceiptTime;
     private String deliveryReceiptStatus;
-    private Instant receiveTime;
+    private GregorianCalendar receiveTime;
     private VirtualNumberConfig testConfig;
 
     public CheckState() {
         this.stateId = UUID.randomUUID();
         this.startTime = new GregorianCalendar();
-    }
-
-    public boolean hasSmsMessageBeenSubmitted()
-    {
-        return ( documentId != null || submitStatus != null || submitTime != null );
     }
 
     public UUID getStateId() {
@@ -83,7 +78,7 @@ public class CheckState {
         return deliveryReceiptStatus;
     }
 
-    public Instant getReceiveTime() {
+    public GregorianCalendar getReceiveTime() {
         return receiveTime;
     }
 
@@ -93,5 +88,33 @@ public class CheckState {
 
     public VirtualNumberConfig getTestConfig() {
         return testConfig;
+    }
+
+    public Phase getPhase()
+    {
+        if( receiveTime != null )
+            return Phase.INBOUND_SMS_PROCESSED;
+        else if( deliveryReceiptTime != null )
+            return Phase.DELIVERY_RECEIPT_PROCESSED;
+        else if( submitTime != null )
+            return Phase.SMS_SUBMITTED;
+        else
+            return Phase.ADDED;
+    }
+
+    public boolean isInPhase(Phase phase)
+    {
+        return phase.equals(getPhase());
+    }
+
+    public enum Phase { ADDED, SMS_SUBMITTED, DELIVERY_RECEIPT_PROCESSED, INBOUND_SMS_PROCESSED }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("id[" + stateId + "]");
+        sb.append("st[" + ((startTime == null) ? "" : startTime.getTime()) + "]");
+        sb.append("su[" + ((submitTime == null) ? "" : submitTime.getTime()) + "]");
+        return sb.toString();
     }
 }

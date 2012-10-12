@@ -55,6 +55,13 @@ public class HeartbeatEvent {
         return calendar.after(due);
     }
 
+    public boolean hasExpired(GregorianCalendar startTime, int timeoutInSeconds)
+    {
+        GregorianCalendar dueToExpire = (GregorianCalendar)startTime.clone();
+        dueToExpire.add(Calendar.SECOND, timeoutInSeconds);
+        return calendar.before(dueToExpire);
+    }
+
     public GregorianCalendar getDueNext(int periodInSeconds)
     {
         GregorianCalendar calendarCopy = (GregorianCalendar)calendar.clone();

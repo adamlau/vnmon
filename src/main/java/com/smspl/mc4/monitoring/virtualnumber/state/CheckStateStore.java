@@ -4,6 +4,7 @@ import org.jboss.solder.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -38,17 +39,9 @@ public class CheckStateStore {
         stateCache.put(state.getStateId(), state);
     }
 
-    public void dumpCache()
+    public Collection<CheckState> getStates()
     {
-        for(CheckState state : stateCache.values())
-        {
-            log.info("state: " + state.toString());
-        }
-    }
-
-    public Set<Map.Entry<UUID, CheckState>> getStates()
-    {
-        return this.stateCache.entrySet();
+        return this.stateCache.values();
     }
 
     public CheckState get(UUID stateId)
@@ -65,5 +58,10 @@ public class CheckStateStore {
             }
         }
         return foundCheckState;
+    }
+
+    public void remove(UUID stateId) {
+        if( stateId != null && stateCache.containsKey(stateId) )
+            stateCache.remove(stateId);
     }
 }

@@ -7,9 +7,10 @@ import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
  * Date: 11/10/12
  */
 public class CheckDeliveryReceiptResponseTime extends CheckStateCommand {
+
     @Override
     protected boolean accept(CheckState state) {
-        return false;
+        return state.isInPhase(CheckState.Phase.SMS_SUBMITTED);
     }
 
     @Override

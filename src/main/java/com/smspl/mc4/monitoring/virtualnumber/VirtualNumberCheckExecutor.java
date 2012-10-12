@@ -1,10 +1,7 @@
 package com.smspl.mc4.monitoring.virtualnumber;
 
 import com.smspl.mc4.monitoring.HeartbeatEvent;
-import com.smspl.mc4.monitoring.virtualnumber.commands.AddNewChecksCommand;
-import com.smspl.mc4.monitoring.virtualnumber.commands.CheckDeliveryReceiptResponseTime;
-import com.smspl.mc4.monitoring.virtualnumber.commands.CheckInboundSmsResponseTime;
-import com.smspl.mc4.monitoring.virtualnumber.commands.SubmitSmsForNewChecks;
+import com.smspl.mc4.monitoring.virtualnumber.commands.*;
 import org.jboss.solder.logging.Logger;
 
 import javax.enterprise.event.Observes;
@@ -21,13 +18,17 @@ public class VirtualNumberCheckExecutor {
     @Inject SubmitSmsForNewChecks submitSmsForNewChecks;
     @Inject CheckDeliveryReceiptResponseTime checkDeliveryReceiptResponseTime;
     @Inject CheckInboundSmsResponseTime checkInboundSmsResponseTime;
+    @Inject ExpireNewChecksCommand expireNewChecksCommand;
+    @Inject DumpCacheCommand dumpCacheCommand;
 
     public void runChecks(@Observes HeartbeatEvent heartbeatEvent) {
         log.info("Running checks...");
+        expireNewChecksCommand.execute(heartbeatEvent);
         addNewChecksCommand.execute(heartbeatEvent);
-        submitSmsForNewChecks.execute(heartbeatEvent);
-        checkDeliveryReceiptResponseTime.execute(heartbeatEvent);
-        checkInboundSmsResponseTime.execute(heartbeatEvent);
+//        submitSmsForNewChecks.execute(heartbeatEvent);
+//        checkDeliveryReceiptResponseTime.execute(heartbeatEvent);
+//        checkInboundSmsResponseTime.execute(heartbeatEvent);
+        dumpCacheCommand.execute(heartbeatEvent);
         log.info("Finished checks...");
     }
 }

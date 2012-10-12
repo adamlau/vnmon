@@ -10,7 +10,7 @@ public class CheckInboundSmsResponseTime extends CheckStateCommand {
 
     @Override
     protected boolean accept(CheckState state) {
-        return false;
+        return state.isInPhase(CheckState.Phase.INBOUND_SMS_PROCESSED);
     }
 
     @Override
