@@ -14,7 +14,7 @@ public abstract class PeriodicStateStoreCommand extends CheckStateStoreCommand {
     @Override
     protected void doPreExecute() {
         if( due == null ) makeDueNow();
-        log.infof("%s due to run after %s", this.getClass().getSimpleName(), due.getTime().toString());
+        getLog().infof("%s due to run after %s", this.getClass().getSimpleName(), due.getTime().toString());
     }
 
     @Override

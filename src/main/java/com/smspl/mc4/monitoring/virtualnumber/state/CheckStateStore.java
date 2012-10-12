@@ -56,4 +56,14 @@ public class CheckStateStore {
         return this.stateCache.get(stateId);
     }
 
+    public CheckState getByDocumentId(String documentId) {
+        CheckState foundCheckState = null;
+        for (CheckState checkState : this.stateCache.values()) {
+            if( documentId.compareTo(checkState.getDocumentId()) == 0 )
+            {
+                foundCheckState = checkState;
+            }
+        }
+        return foundCheckState;
+    }
 }

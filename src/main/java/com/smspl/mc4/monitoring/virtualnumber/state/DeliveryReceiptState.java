@@ -10,12 +10,12 @@ import java.util.UUID;
 public class DeliveryReceiptState {
     private final GregorianCalendar deliveryReceiptTime;
     private final String deliveryReceiptStatus;
-    private final UUID stateId;
+    private final String documentId;
 
-    public DeliveryReceiptState(GregorianCalendar deliveryReceiptTime, String deliveryReceiptStatus, UUID stateId) {
+    public DeliveryReceiptState(GregorianCalendar deliveryReceiptTime, String deliveryReceiptStatus, String documentId) {
         this.deliveryReceiptTime = deliveryReceiptTime;
         this.deliveryReceiptStatus = deliveryReceiptStatus;
-        this.stateId = stateId;
+        this.documentId = documentId;
     }
 
     public GregorianCalendar getDeliveryReceiptTime() {
@@ -26,7 +26,7 @@ public class DeliveryReceiptState {
         return deliveryReceiptStatus;
     }
 
-    public UUID getStateId() {
-        return stateId;
+    public String getDocumentId() {
+        return documentId;
     }
 }

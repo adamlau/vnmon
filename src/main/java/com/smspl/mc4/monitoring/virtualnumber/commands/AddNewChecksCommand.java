@@ -21,9 +21,9 @@ public class AddNewChecksCommand extends PeriodicStateStoreCommand {
 
         for( VirtualNumberConfig config : configManager.getConfigs())
         {
-            log.infof("Adding check: %s", config.toString());
+            getLog().infof("Adding check: %s", config.toString());
             CheckState state = CheckStateBuilder.create().withTestConfig(config).build();
-            checkStateStore.addState(state);
+            getCheckStateStore().addState(state);
         }
 
     }

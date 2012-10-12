@@ -1,6 +1,7 @@
 package com.smspl.mc4.monitoring.virtualnumber.rest;
 
 import com.smspl.mc4.monitoring.HeartbeatEvent;
+import com.smspl.mc4.monitoring.virtualnumber.commands.ProcessDeliveryReceiptCommand;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateStore;
 import com.smspl.mc4.monitoring.virtualnumber.state.DeliveryReceiptState;
 import org.jboss.solder.logging.Logger;
@@ -21,12 +22,15 @@ import java.util.GregorianCalendar;
 public class ProcessEndPoint {
 
     private static final String OK_RESPONSE = "OK";
+
     @Inject
     CheckStateStore checkStateStore;
 
     @Inject
     Logger log;
 
+    @Inject
+    ProcessDeliveryReceiptCommand processDeliveryReceiptCommand;
     /**
      * REST endpoint for receiving Delivery Receipt updates from the gateway
      *
@@ -45,7 +49,9 @@ public class ProcessEndPoint {
                                          @QueryParam("sourceAddress") String sourceAddress)
     {
         try {
-            //DeliveryReceiptState deliveryReceiptState = new DeliveryReceiptState();
+            DeliveryReceiptState deliveryReceiptState = new DeliveryReceiptState(null,null,null);
+            processDeliveryReceiptCommand.setDeliveryReceiptCommandState(deliveryReceiptState);
+            processDeliveryReceiptCommand.execute(new HeartbeatEvent());
         } catch (Exception e) {
             log.error(e);
         }

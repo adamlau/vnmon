@@ -21,7 +21,7 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
 
     @Override
     protected final void doExecute() {
-        Iterator<Map.Entry<UUID,CheckState>> stateIterator = checkStateStore.getStates().iterator();
+        Iterator<Map.Entry<UUID,CheckState>> stateIterator = getCheckStateStore().getStates().iterator();
         while(stateIterator.hasNext())
         {
             CheckState currentState = stateIterator.next().getValue();

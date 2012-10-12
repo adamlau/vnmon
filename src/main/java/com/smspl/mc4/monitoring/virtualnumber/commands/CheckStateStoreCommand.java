@@ -27,10 +27,10 @@ public abstract class CheckStateStoreCommand implements CheckCommand {
     private HeartbeatEvent heartbeatEvent;
 
     @Inject
-    CheckStateStore checkStateStore;
+    private CheckStateStore checkStateStore;
 
     @Inject
-    Logger log;
+    private Logger log;
 
     @Override
     public void execute(HeartbeatEvent heartbeatEvent) {
@@ -77,4 +77,11 @@ public abstract class CheckStateStoreCommand implements CheckCommand {
      */
     protected void doPostExecute() { }
 
+    protected CheckStateStore getCheckStateStore() {
+        return checkStateStore;
+    }
+
+    protected Logger getLog() {
+        return log;
+    }
 }
