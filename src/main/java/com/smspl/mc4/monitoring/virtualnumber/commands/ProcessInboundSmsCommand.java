@@ -1,8 +1,8 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
-import com.smspl.mc4.monitoring.virtualnumber.rest.InboundSmsPushState;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateBuilder;
+import com.smspl.mc4.monitoring.virtualnumber.state.InboundSmsPushState;
 
 import java.util.UUID;
 
@@ -22,17 +22,16 @@ public class ProcessInboundSmsCommand extends CheckStateStoreCommand {
     @Override
     protected boolean canExecute() {
         if (pushState == null) {
-            getLog().warn("pushState not set. Call setPushState(InboundSmsPushState pushState) before execution");
+            getLog().warn("pushState not set. Call setPushState(InboundSmsPushState pushState) before execute()");
             return false;
         }
-        if (pushState.getText() == null || pushState.getText().isEmpty() ) {
+        if (pushState.getText() == null || pushState.getText().isEmpty()) {
             getLog().warn("text is not set in pushState.");
             return false;
         }
 
-        try
-        {
-        stateId = UUID.fromString(pushState.getText());
+        try {
+            stateId = UUID.fromString(pushState.getText());
         } catch (Exception e) {
             getLog().warnf("text can not be converted to UUID: %s", pushState.getText());
             return false;
@@ -45,7 +44,7 @@ public class ProcessInboundSmsCommand extends CheckStateStoreCommand {
     protected void doExecute() {
         CheckState stateToUpdate = getCheckStateStore().get(stateId);
 
-        if( stateToUpdate != null )
+        if (stateToUpdate != null)
             CheckStateBuilder.update(stateToUpdate).withInboundSmsStatus(pushState, getHeartbeatEvent().getDueNext(0));
         else
             getLog().warnf("Inbound SMS could not be matched for stateId: %s", stateId);

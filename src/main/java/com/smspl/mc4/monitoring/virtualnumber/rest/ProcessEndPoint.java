@@ -5,6 +5,7 @@ import com.smspl.mc4.monitoring.virtualnumber.commands.ProcessDeliveryReceiptCom
 import com.smspl.mc4.monitoring.virtualnumber.commands.ProcessInboundSmsCommand;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateStore;
 import com.smspl.mc4.monitoring.virtualnumber.state.DeliveryReceiptPushState;
+import com.smspl.mc4.monitoring.virtualnumber.state.InboundSmsPushState;
 import org.jboss.solder.logging.Logger;
 
 import javax.inject.Inject;

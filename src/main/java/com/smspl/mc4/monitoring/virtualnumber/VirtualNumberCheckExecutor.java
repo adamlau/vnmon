@@ -1,6 +1,10 @@
-package com.smspl.mc4.monitoring.virtualnumber.commands;
+package com.smspl.mc4.monitoring.virtualnumber;
 
 import com.smspl.mc4.monitoring.HeartbeatEvent;
+import com.smspl.mc4.monitoring.virtualnumber.commands.AddNewChecksCommand;
+import com.smspl.mc4.monitoring.virtualnumber.commands.CheckDeliveryReceiptResponseTime;
+import com.smspl.mc4.monitoring.virtualnumber.commands.CheckInboundSmsResponseTime;
+import com.smspl.mc4.monitoring.virtualnumber.commands.SubmitSmsForNewChecks;
 import org.jboss.solder.logging.Logger;
 
 import javax.enterprise.event.Observes;
@@ -10,7 +14,7 @@ import javax.inject.Inject;
  * User: adam
  * Date: 9/10/12
  */
-public class CommandExecutor {
+public class VirtualNumberCheckExecutor {
 
     @Inject Logger log;
     @Inject AddNewChecksCommand addNewChecksCommand;

@@ -1,4 +1,4 @@
-package com.smspl.mc4.monitoring.virtualnumber.rest;
+package com.smspl.mc4.monitoring.virtualnumber.state;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,7 +1,6 @@
 package com.smspl.mc4.monitoring.virtualnumber.state;
 
 import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberConfig;
-import com.smspl.mc4.monitoring.virtualnumber.rest.InboundSmsPushState;
 import com.smspl.mc4.monitoring.virtualnumber.rest.SubmitStatusEx;
 
 import java.util.GregorianCalendar;
