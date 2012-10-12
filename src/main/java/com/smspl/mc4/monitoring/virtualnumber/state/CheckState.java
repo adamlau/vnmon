@@ -67,7 +67,7 @@ public class CheckState {
         this.deliveryReceiptStatus = deliveryReceiptStatus;
     }
 
-    public void setReceiveTime(Instant receiveTime) {
+    public void setReceiveTime(GregorianCalendar receiveTime) {
         this.receiveTime = receiveTime;
     }
 

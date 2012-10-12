@@ -1,6 +1,7 @@
 package com.smspl.mc4.monitoring.virtualnumber.state;
 
 import com.smspl.mc4.monitoring.virtualnumber.VirtualNumberConfig;
+import com.smspl.mc4.monitoring.virtualnumber.rest.InboundSmsPushState;
 import com.smspl.mc4.monitoring.virtualnumber.rest.SubmitStatusEx;
 
 import java.util.GregorianCalendar;
@@ -47,14 +48,19 @@ public class CheckStateBuilder {
         return this;
     }
 
-    public CheckStateBuilder withDeliveryStatus(DeliveryReceiptState deliveryReceiptState)
+    public CheckStateBuilder withDeliveryStatus(DeliveryReceiptPushState deliveryReceiptPushState, GregorianCalendar timeStamp)
     {
-        checkCommandState.setDeliveryReceiptStatus(deliveryReceiptState.getDeliveryReceiptStatus());
-        checkCommandState.setDeliveryReceiptTime(deliveryReceiptState.getDeliveryReceiptTime());
+        checkCommandState.setDeliveryReceiptStatus(deliveryReceiptPushState.getStatus());
+        checkCommandState.setDeliveryReceiptTime(timeStamp);
         return this;
     }
 
     public CheckState build() {
         return checkCommandState;
+    }
+
+    public CheckStateBuilder withInboundSmsStatus(InboundSmsPushState inboundSmsPushState, GregorianCalendar timeStamp) {
+        checkCommandState.setReceiveTime(timeStamp);
+        return this;
     }
 }

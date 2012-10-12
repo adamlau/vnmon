@@ -2,8 +2,9 @@ package com.smspl.mc4.monitoring.virtualnumber.rest;
 
 import com.smspl.mc4.monitoring.HeartbeatEvent;
 import com.smspl.mc4.monitoring.virtualnumber.commands.ProcessDeliveryReceiptCommand;
+import com.smspl.mc4.monitoring.virtualnumber.commands.ProcessInboundSmsCommand;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateStore;
-import com.smspl.mc4.monitoring.virtualnumber.state.DeliveryReceiptState;
+import com.smspl.mc4.monitoring.virtualnumber.state.DeliveryReceiptPushState;
 import org.jboss.solder.logging.Logger;
 
 import javax.inject.Inject;
@@ -12,7 +13,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import java.util.GregorianCalendar;
 
 /**
  * User: adamlau
@@ -31,26 +31,26 @@ public class ProcessEndPoint {
 
     @Inject
     ProcessDeliveryReceiptCommand processDeliveryReceiptCommand;
+
+    @Inject
+    ProcessInboundSmsCommand processInboundSmsCommand;
+
     /**
      * REST endpoint for receiving Delivery Receipt updates from the gateway
      *
      * @param documentId
      * @param status
-     * @param timeStamp
-     * @param sourceAddress
      * @return OK_RESPONSE regardless of outcome
      */
     @GET
     @Path("/dr")
     @Produces(MediaType.APPLICATION_JSON)
     public String processDeliveryReceipt(@QueryParam("documentId") String documentId,
-                                         @QueryParam("status") String status,
-                                         @QueryParam("timeStamp") String timeStamp,
-                                         @QueryParam("sourceAddress") String sourceAddress)
+                                         @QueryParam("status") String status)
     {
         try {
-            DeliveryReceiptState deliveryReceiptState = new DeliveryReceiptState(null,null,null);
-            processDeliveryReceiptCommand.setDeliveryReceiptCommandState(deliveryReceiptState);
+            DeliveryReceiptPushState deliveryReceiptPushState = new DeliveryReceiptPushState(status,documentId);
+            processDeliveryReceiptCommand.setPushState(deliveryReceiptPushState);
             processDeliveryReceiptCommand.execute(new HeartbeatEvent());
         } catch (Exception e) {
             log.error(e);
@@ -61,22 +61,22 @@ public class ProcessEndPoint {
     /**
      * REST endpoint for receiving an inbound sms from the gateway
      *
-     * @param documentId
-     * @param status
-     * @param timeStamp
-     * @param sourceAddress
+     * @param sender
+     * @param recipient
+     * @param text contains the UUID of the CheckStore entry to match to
      * @return OK_RESPONSE regardless of outcome
      */
     @GET
     @Path("/sms")
     @Produces(MediaType.APPLICATION_JSON)
-    public String processInboundSms(@QueryParam("documentId") String documentId,
-                                    @QueryParam("status") String status,
-                                    @QueryParam("timeStamp") String timeStamp,
-                                    @QueryParam("sourceAddress") String sourceAddress)
+    public String processInboundSms(@QueryParam("sender") String sender,
+                                    @QueryParam("recipient") String recipient,
+                                    @QueryParam("text") String text )
     {
         try {
-            // update inbound sms
+            InboundSmsPushState inboundSmsPushState = new InboundSmsPushState(sender, recipient, text);
+            processInboundSmsCommand.setPushState(inboundSmsPushState);
+            processInboundSmsCommand.execute(new HeartbeatEvent());
         } catch (Exception e) {
             log.error(e);
         }
