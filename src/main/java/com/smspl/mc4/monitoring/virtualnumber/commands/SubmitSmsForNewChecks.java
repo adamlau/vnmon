@@ -1,11 +1,10 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
-import com.smspl.mc4.monitoring.virtualnumber.rest.SendSMSService;
+import com.smspl.mc4.monitoring.services.SMSSubmitService;
 import com.smspl.mc4.monitoring.virtualnumber.rest.SubmitStatusEx;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateBuilder;
 import com.smspl.mc4.monitoring.virtualnumber.state.Phase;
-import org.jboss.seam.rest.client.RestClient;
 
 import javax.inject.Inject;
 
@@ -16,8 +15,7 @@ import javax.inject.Inject;
 public class SubmitSmsForNewChecks extends CheckStateCommand {
 
     @Inject
-    @RestClient("http://primary.smartmessagingservices.net:8080/mc5")
-    SendSMSService sendSMSService;
+    SMSSubmitService smsSubmitService;
 
     @Override
     protected boolean accept(CheckState state) {
@@ -27,7 +25,7 @@ public class SubmitSmsForNewChecks extends CheckStateCommand {
     @Override
     protected void process(CheckState state) {
         getLog().infof("Submitting new message %s: %s", state.getStateId(), state.getTestConfig().toString());
-        SubmitStatusEx status = sendSMSService.sendSingle2(
+        SubmitStatusEx status = smsSubmitService.submit(
                 state.getTestConfig().getUsername(),
                 state.getTestConfig().getPassword(),
                 state.getTestConfig().getRecipient(),

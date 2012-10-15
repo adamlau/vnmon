@@ -1,9 +1,12 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
+import com.smspl.mc4.monitoring.services.ErrorNotifier;
 import com.smspl.mc4.monitoring.virtualnumber.config.TimeOutConfig;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 
-import java.util.ArrayList;
+import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -20,7 +23,10 @@ import java.util.UUID;
 public abstract class CheckStateCommand extends CheckStateStoreCommand {
 
     private int timeOutInSeconds = TimeOutConfig.DEFAULT_TIMEOUT;
-    private ArrayList<UUID> statesToRemove = new ArrayList<UUID>();
+    private HashMap<UUID, String> statesToRemove = new HashMap<UUID, String>();
+
+    @Inject
+    ErrorNotifier errorNotifier;
 
     @Override
     protected final void doExecute() {
@@ -30,17 +36,19 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
                     process(currentState);
                 } catch (Exception e) {
                     getLog().errorf("Error processing %s: %s", currentState.getStateId(), e.getMessage());
-                    flagStateForRemoval(currentState);
+                    flagStateForRemoval(currentState, e.getMessage());
                 }
         }
     }
 
     @Override
     protected void doPostExecute() {
-        // todo: add to error notifier
-        for (UUID stateId : statesToRemove) {
-            getLog().infof("remove: %s", getCheckStateStore().get(stateId).toString());
-            getCheckStateStore().remove(stateId);
+        if (!statesToRemove.isEmpty()) {
+            for (Map.Entry<UUID, String> entry : statesToRemove.entrySet()) {
+                getLog().infof("remove: %s", getCheckStateStore().get(entry.getKey()).toString());
+                getCheckStateStore().remove(entry.getKey());
+                errorNotifier.notifyOfErrors(entry.getKey().toString() + ": " + entry.getValue());
+            }
         }
     }
 
@@ -48,9 +56,9 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
         return new TimeOutConfig(getHeartbeatEvent(), timeOutInSeconds);
     }
 
-    protected void flagStateForRemoval(CheckState state) {
+    protected void flagStateForRemoval(CheckState state, String reason) {
         if (state != null && state.getStateId() != null) {
-            statesToRemove.add(state.getStateId());
+            statesToRemove.put(state.getStateId(), reason);
         }
     }
 

@@ -3,8 +3,6 @@ package com.smspl.mc4.monitoring.virtualnumber.commands;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 import com.smspl.mc4.monitoring.virtualnumber.state.Phase;
 
-import javax.inject.Inject;
-
 /**
  * User: adamlau
  * Date: 12/10/12
