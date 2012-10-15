@@ -1,5 +1,6 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
+import com.smspl.mc4.monitoring.virtualnumber.config.TimeOutConfig;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 
 import java.util.ArrayList;
@@ -18,9 +19,7 @@ import java.util.UUID;
  */
 public abstract class CheckStateCommand extends CheckStateStoreCommand {
 
-    private static final int DEFAULT_TIMEOUT = 120;
-
-    private int timeOutInSeconds = DEFAULT_TIMEOUT;
+    private int timeOutInSeconds = TimeOutConfig.DEFAULT_TIMEOUT;
     private ArrayList<UUID> statesToRemove = new ArrayList<UUID>();
 
     @Override
@@ -39,7 +38,7 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
     protected void doPostExecute() {
         // todo: add to error notifier
         for (UUID stateId : statesToRemove) {
-            getLog().infof("remove: %s",getCheckStateStore().get(stateId).toString());
+            getLog().infof("remove: %s", getCheckStateStore().get(stateId).toString());
             getCheckStateStore().remove(stateId);
         }
     }

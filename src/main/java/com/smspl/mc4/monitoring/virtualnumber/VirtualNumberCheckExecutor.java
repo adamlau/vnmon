@@ -24,6 +24,7 @@ public class VirtualNumberCheckExecutor {
 
     public void runChecks(@Observes HeartbeatEvent heartbeatEvent) {
         log.info("Running checks...");
+
         expireNewChecksCommand.execute(heartbeatEvent);
         addNewChecksCommand.execute(heartbeatEvent);
         submitSmsForNewChecks.execute(heartbeatEvent);
@@ -31,6 +32,7 @@ public class VirtualNumberCheckExecutor {
         checkInboundSmsResponseTime.execute(heartbeatEvent);
         expireCompletedChecks.execute(heartbeatEvent);
         dumpCacheCommand.execute(heartbeatEvent);
+
         log.info("Finished checks...");
     }
 }

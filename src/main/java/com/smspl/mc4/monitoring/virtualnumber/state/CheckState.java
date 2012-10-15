@@ -1,6 +1,6 @@
 package com.smspl.mc4.monitoring.virtualnumber.state;
 
-import com.smspl.mc4.monitoring.virtualnumber.commands.TimeOutConfig;
+import com.smspl.mc4.monitoring.virtualnumber.config.TimeOutConfig;
 import com.smspl.mc4.monitoring.virtualnumber.config.VirtualNumberConfig;
 import org.joda.time.DateTime;
 
