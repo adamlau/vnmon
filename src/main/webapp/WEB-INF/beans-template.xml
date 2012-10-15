@@ -3,7 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:s="urn:java:ee"
        xmlns:vn="urn:java:com.smspl.mc4.monitoring.virtualnumber:com.smspl.mc4.monitoring.virtualnumber.commands:com.smspl.mc4.monitoring.virtualnumber.config"
-       xmlns:mn="urn:java:com.smspl.mc4.monitoring"
+       xmlns:mn="urn:java:com.smspl.mc4.monitoring:com.smspl.mc4.monitoring.services"
+       xmlns:mail="urn:java:org.jboss.seam.mail.core"
        xsi:schemaLocation="
         http://java.sun.com/xml/ns/javaee
         http://docs.jboss.org/cdi/beans_1_0.xsd"
@@ -15,15 +16,44 @@
         <mn:periodInSeconds>5</mn:periodInSeconds>
     </mn:HeartbeatEmitter>
 
+    <mn:ErrorNotifierConfig>
+        <s:modifies/>
+        <mn:username>3</mn:username>
+        <mn:password>5</mn:password>
+        <mn:emailRecipients>5</mn:emailRecipients>
+        <mn:mobileRecipients>5</mn:mobileRecipients>
+    </mn:ErrorNotifierConfig>
+
+    <mail:MailConfig
+            serverHost=""
+            serverPort="">
+        <s:modifies/>
+    </mail:MailConfig>
+
+    <vn:PeriodCalculator>
+        <s:modifies/>
+        <vn:highFrequencyPeriodInSeconds>120</vn:highFrequencyPeriodInSeconds>
+    </vn:PeriodCalculator>
+
     <vn:ExpireNewChecksCommand>
         <s:modifies/>
-        <vn:timeOutInSeconds>120</vn:timeOutInSeconds>
+        <vn:timeOutInSeconds>600</vn:timeOutInSeconds>
     </vn:ExpireNewChecksCommand>
 
-    <vn:AddNewChecksCommand>
+    <vn:CheckDeliveryReceiptResponseTime>
         <s:modifies/>
-        <vn:periodInSeconds>60</vn:periodInSeconds>
-    </vn:AddNewChecksCommand>
+        <vn:timeOutInSeconds>300</vn:timeOutInSeconds>
+    </vn:CheckDeliveryReceiptResponseTime>
+
+    <vn:CheckInboundSmsResponseTime>
+        <s:modifies/>
+        <vn:timeOutInSeconds>1200</vn:timeOutInSeconds>
+    </vn:CheckInboundSmsResponseTime>
+
+    <vn:ExpireCompletedChecks>
+        <s:modifies/>
+        <vn:timeOutInSeconds>1200</vn:timeOutInSeconds>
+    </vn:ExpireCompletedChecks>
 
     <vn:VirtualNumberConfigManager>
         <s:modifies/>
@@ -36,8 +66,8 @@
     <vn:VirtualNumberConfig>
         <s:modifies/>
         <vn:username>a</vn:username>
-        <vn:password>a</vn:password>
-        <vn:recipient>a</vn:recipient>
+        <vn:password>m</vn:password>
+        <vn:recipient>0</vn:recipient>
         <vn:sender>a</vn:sender>
     </vn:VirtualNumberConfig>
 
