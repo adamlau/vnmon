@@ -18,8 +18,7 @@ TODO
 ===========
 1) Implement an error notifier
 2) Set up test framework (yes this should be done first!)
-4) Set up service to determine frequency of checks based on time of day
-5) Quis custodiet ipsos custodes?
+3) Quis custodiet ipsos custodes?
 
 Frameworks and Libraries
 =================================

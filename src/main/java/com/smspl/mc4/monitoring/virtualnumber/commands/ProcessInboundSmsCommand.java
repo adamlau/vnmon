@@ -45,7 +45,10 @@ public class ProcessInboundSmsCommand extends CheckStateStoreCommand {
         CheckState stateToUpdate = getCheckStateStore().get(stateId);
 
         if (stateToUpdate != null)
-            CheckStateBuilder.update(stateToUpdate).withInboundSmsStatus(pushState, getHeartbeatEvent().getDueNext(0));
+        {
+            getLog().infof("updating inbound sms for stateId: %s", stateId);
+            CheckStateBuilder.update(stateToUpdate).withInboundSmsStatus(pushState, getHeartbeatEvent().getTime());
+        }
         else
             getLog().warnf("Inbound SMS could not be matched for stateId: %s", stateId);
     }

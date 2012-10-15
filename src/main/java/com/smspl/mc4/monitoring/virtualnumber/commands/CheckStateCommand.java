@@ -29,6 +29,7 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
                 try {
                     process(currentState);
                 } catch (Exception e) {
+                    getLog().errorf("Error processing %s: %s", currentState.getStateId(), e.getMessage());
                     flagStateForRemoval(currentState);
                 }
         }

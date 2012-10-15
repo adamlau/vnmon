@@ -63,7 +63,7 @@ public class CheckState {
     }
 
     public boolean hasReceivedInboundSmsInTime(TimeOutConfig timeOutConfig) {
-        return (receiveTime != null) || !timeOutConfig.hasTimedOut(receiveTime);
+        return (receiveTime != null) || !timeOutConfig.hasTimedOut(deliveryReceiptTime);
     }
 
     public boolean hasReceivedDeliveryReceiptInTime(TimeOutConfig timeOutConfig) {
