@@ -4,6 +4,7 @@ import com.smspl.mc4.monitoring.virtualnumber.rest.SendSMSService;
 import com.smspl.mc4.monitoring.virtualnumber.rest.SubmitStatusEx;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckStateBuilder;
+import com.smspl.mc4.monitoring.virtualnumber.state.Phase;
 import org.jboss.seam.rest.client.RestClient;
 
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ public class SubmitSmsForNewChecks extends CheckStateCommand {
 
     @Override
     protected boolean accept(CheckState state) {
-        return state.isInPhase(CheckState.Phase.ADDED);
+        return state.isInPhase(Phase.ADDED);
     }
 
     @Override

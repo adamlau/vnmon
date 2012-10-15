@@ -1,6 +1,7 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
+import com.smspl.mc4.monitoring.virtualnumber.state.Phase;
 
 /**
  * User: adam
@@ -10,7 +11,7 @@ public class CheckDeliveryReceiptResponseTime extends CheckStateCommand {
 
     @Override
     protected boolean accept(CheckState state) {
-        return state.isInPhase(CheckState.Phase.SMS_SUBMITTED);
+        return state.isInPhase(Phase.SMS_SUBMITTED);
     }
 
     @Override

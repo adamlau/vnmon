@@ -89,7 +89,7 @@ public class CheckState {
         return testConfig;
     }
 
-    public Phase getPhase()
+    public Phase getCurrentPhase()
     {
         if( receiveTime != null )
             return Phase.INBOUND_SMS_PROCESSED;
@@ -103,10 +103,8 @@ public class CheckState {
 
     public boolean isInPhase(Phase phase)
     {
-        return phase.equals(getPhase());
+        return phase.equals(getCurrentPhase());
     }
-
-    public enum Phase { ADDED, SMS_SUBMITTED, DELIVERY_RECEIPT_PROCESSED, INBOUND_SMS_PROCESSED }
 
     @Override
     public String toString() {
