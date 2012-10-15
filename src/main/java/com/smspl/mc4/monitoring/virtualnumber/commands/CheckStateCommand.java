@@ -8,7 +8,7 @@ import java.util.UUID;
 
 /**
  * CheckStateCommand will iterate over the CheckStateStore and offer each entry
- * up for processing.
+ * up for processing. It also allows for expirying and removal of the entry.
  * <p/>
  * Each entry can be accepted for execution using <code>accept(CheckState state)</code>
  * <p/>
@@ -19,6 +19,9 @@ import java.util.UUID;
  */
 public abstract class CheckStateCommand extends CheckStateStoreCommand {
 
+    private static final int DEFAULT_TIMEOUT = 120;
+
+    protected int timeOutInSeconds = DEFAULT_TIMEOUT;
     private ArrayList<UUID> statesToRemove = new ArrayList<UUID>();
 
     @Override
@@ -45,8 +48,9 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
         }
     }
 
-    protected boolean stateTimedOut(DateTime stateTime, int timeOutInSeconds) {
-        return getHeartbeatEvent().hasExpired(stateTime, timeOutInSeconds);
+    protected TimeOutConfig getTimeOutConfig()
+    {
+        return new TimeOutConfig(getHeartbeatEvent(), timeOutInSeconds);
     }
 
     protected void flagStateForRemoval(CheckState state) {

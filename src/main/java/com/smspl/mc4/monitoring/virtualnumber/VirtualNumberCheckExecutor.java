@@ -25,8 +25,8 @@ public class VirtualNumberCheckExecutor {
         log.info("Running checks...");
         expireNewChecksCommand.execute(heartbeatEvent);
         addNewChecksCommand.execute(heartbeatEvent);
-//        submitSmsForNewChecks.execute(heartbeatEvent);
-//        checkDeliveryReceiptResponseTime.execute(heartbeatEvent);
+        submitSmsForNewChecks.execute(heartbeatEvent);
+        checkDeliveryReceiptResponseTime.execute(heartbeatEvent);
 //        checkInboundSmsResponseTime.execute(heartbeatEvent);
         dumpCacheCommand.execute(heartbeatEvent);
         log.info("Finished checks...");

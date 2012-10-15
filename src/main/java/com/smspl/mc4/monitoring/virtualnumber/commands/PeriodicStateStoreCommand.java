@@ -1,5 +1,6 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
+import com.smspl.mc4.monitoring.util.DateFormatter;
 import org.joda.time.DateTime;
 
 /**
@@ -16,7 +17,7 @@ public abstract class PeriodicStateStoreCommand extends CheckStateStoreCommand {
         if( due == null ) makeDueNow();
 
         if( !isDue() )
-            getLog().infof("%s due to run after %s", this.getClass().getSimpleName(), due.toString());
+            getLog().infof("%s due to run in %s", this.getClass().getSimpleName(), DateFormatter.printTimeRemaining(getHeartbeatEvent().getTime(), due));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.smspl.mc4.monitoring.virtualnumber.state;
 
+import com.smspl.mc4.monitoring.virtualnumber.commands.TimeOutConfig;
 import com.smspl.mc4.monitoring.virtualnumber.config.VirtualNumberConfig;
 import org.joda.time.DateTime;
 
@@ -29,16 +30,8 @@ public class CheckState {
         return stateId;
     }
 
-    public DateTime getStartTime() {
-        return startTime;
-    }
-
     public String getDocumentId() {
         return documentId;
-    }
-
-    public DateTime getSubmitTime() {
-        return submitTime;
     }
 
     public void setDocumentId(String documentId) {
@@ -65,24 +58,16 @@ public class CheckState {
         this.receiveTime = receiveTime;
     }
 
-    public String getSubmitStatus() {
-        return submitStatus;
-    }
-
-    public DateTime getDeliveryReceiptTime() {
-        return deliveryReceiptTime;
-    }
-
-    public String getDeliveryReceiptStatus() {
-        return deliveryReceiptStatus;
-    }
-
-    public DateTime getReceiveTime() {
-        return receiveTime;
-    }
-
     public void setTestConfig(VirtualNumberConfig testConfig) {
         this.testConfig = testConfig;
+    }
+
+    public boolean hasReceivedDeliveryReceiptInTime(TimeOutConfig timeOutConfig) {
+        return timeOutConfig.hasTimedOut(submitTime);
+    }
+
+    public boolean hasSubmittedNewMessageInTime(TimeOutConfig timeOutConfig) {
+        return timeOutConfig.hasTimedOut(startTime);
     }
 
     public VirtualNumberConfig getTestConfig() {
@@ -114,4 +99,5 @@ public class CheckState {
         sb.append("su[" + ((submitTime == null) ? "" : submitTime.toString()) + "]");
         return sb.toString();
     }
+
 }

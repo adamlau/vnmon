@@ -10,10 +10,6 @@ import com.smspl.mc4.monitoring.virtualnumber.state.Phase;
  */
 public class ExpireNewChecksCommand extends CheckStateCommand {
 
-    private static final int DEFAULT_TIMEOUT = 120;
-
-    private int timeOutInSeconds = DEFAULT_TIMEOUT;
-
     @Override
     protected boolean accept(CheckState state) {
         return state.isInPhase(Phase.ADDED);
@@ -21,7 +17,7 @@ public class ExpireNewChecksCommand extends CheckStateCommand {
 
     @Override
     protected void process(CheckState state) {
-        if( stateTimedOut(state.getStartTime(), timeOutInSeconds) )
+        if(  !state.hasSubmittedNewMessageInTime(getTimeOutConfig()) )
             flagStateForRemoval(state);
     }
 
