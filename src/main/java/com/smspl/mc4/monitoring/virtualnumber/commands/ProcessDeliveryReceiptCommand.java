@@ -35,9 +35,10 @@ public class ProcessDeliveryReceiptCommand extends CheckStateStoreCommand {
     protected void doExecute() {
         CheckState stateToUpdate = getCheckStateStore().getByDocumentId(pushState.getDocumentId());
 
-        if( stateToUpdate != null )
+        if (stateToUpdate != null) {
+            getLog().warnf("updating delivery receipt for documentId: %s", pushState.getDocumentId());
             CheckStateBuilder.update(stateToUpdate).withDeliveryStatus(pushState, getHeartbeatEvent().getTime());
-        else
+        } else
             getLog().warnf("Delivery receipt could not be matched for documentId: %s", pushState.getDocumentId());
     }
 

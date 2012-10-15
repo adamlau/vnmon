@@ -9,8 +9,8 @@ import org.joda.time.DateTime;
  * Time: 12:43 PM
  */
 public class TimeOutConfig {
-    private HeartbeatEvent currentHeartbeat;
-    private int timeOutInSeconds;
+    private final HeartbeatEvent currentHeartbeat;
+    private final int timeOutInSeconds;
 
     public TimeOutConfig(HeartbeatEvent currentHeartbeat, int timeOutInSeconds) {
         this.currentHeartbeat = currentHeartbeat;

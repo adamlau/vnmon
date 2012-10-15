@@ -1,14 +1,13 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
-import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 /**
  * CheckStateCommand will iterate over the CheckStateStore and offer each entry
- * up for processing. It also allows for expirying and removal of the entry.
+ * up for processing. It also allows for expiring and removal of the entry.
  * <p/>
  * Each entry can be accepted for execution using <code>accept(CheckState state)</code>
  * <p/>
@@ -21,7 +20,7 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
 
     private static final int DEFAULT_TIMEOUT = 120;
 
-    protected int timeOutInSeconds = DEFAULT_TIMEOUT;
+    private int timeOutInSeconds = DEFAULT_TIMEOUT;
     private ArrayList<UUID> statesToRemove = new ArrayList<UUID>();
 
     @Override
@@ -39,17 +38,13 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
     @Override
     protected void doPostExecute() {
         // todo: add to error notifier
-        if (statesToRemove.size() > 0) {
-            getLog().info("Removing states:");
-            for (UUID stateId : statesToRemove) {
-                getLog().infof(getCheckStateStore().get(stateId).toString());
-                getCheckStateStore().remove(stateId);
-            }
+        for (UUID stateId : statesToRemove) {
+            getLog().infof("remove: %s",getCheckStateStore().get(stateId).toString());
+            getCheckStateStore().remove(stateId);
         }
     }
 
-    protected TimeOutConfig getTimeOutConfig()
-    {
+    protected TimeOutConfig getTimeOutConfig() {
         return new TimeOutConfig(getHeartbeatEvent(), timeOutInSeconds);
     }
 

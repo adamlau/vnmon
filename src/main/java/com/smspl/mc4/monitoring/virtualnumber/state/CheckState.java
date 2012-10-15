@@ -63,7 +63,7 @@ public class CheckState {
     }
 
     public boolean hasReceivedDeliveryReceiptInTime(TimeOutConfig timeOutConfig) {
-        return timeOutConfig.hasTimedOut(submitTime);
+        return (deliveryReceiptTime != null) || !timeOutConfig.hasTimedOut(submitTime);
     }
 
     public boolean hasSubmittedNewMessageInTime(TimeOutConfig timeOutConfig) {
