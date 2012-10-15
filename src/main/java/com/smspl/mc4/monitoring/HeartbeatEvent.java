@@ -1,5 +1,6 @@
 package com.smspl.mc4.monitoring;
 
+import com.smspl.mc4.monitoring.virtualnumber.config.PeriodCalculator;
 import org.joda.time.DateTime;
 
 /**
@@ -33,5 +34,9 @@ public class HeartbeatEvent {
     public DateTime getTime()
     {
         return eventTime;
+    }
+
+    public DateTime getDueNext(PeriodCalculator periodCalculator) {
+        return getDueNext(periodCalculator.getPeriodInSeconds(eventTime));
     }
 }

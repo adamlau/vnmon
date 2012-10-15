@@ -1,7 +1,10 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
 import com.smspl.mc4.monitoring.util.DateFormatter;
+import com.smspl.mc4.monitoring.virtualnumber.config.PeriodCalculator;
 import org.joda.time.DateTime;
+
+import javax.inject.Inject;
 
 /**
  * User: adam
@@ -10,7 +13,9 @@ import org.joda.time.DateTime;
 public abstract class PeriodicStateStoreCommand extends CheckStateStoreCommand {
 
     protected static DateTime due = null;
-    protected static Integer periodInSeconds = 20;
+
+    @Inject
+    PeriodCalculator periodCalculator;
 
     @Override
     protected void doPreExecute() {
@@ -41,7 +46,7 @@ public abstract class PeriodicStateStoreCommand extends CheckStateStoreCommand {
 
     private void setNextDue()
     {
-        due = getHeartbeatEvent().getDueNext(periodInSeconds);
+        due = getHeartbeatEvent().getDueNext(periodCalculator);
     }
 
 }
