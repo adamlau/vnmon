@@ -1,7 +1,5 @@
 package com.smspl.mc4.monitoring.virtualnumber.state;
 
-import java.util.GregorianCalendar;
-
 /**
  * User: adam
  * Date: 11/10/12

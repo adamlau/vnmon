@@ -1,9 +1,9 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
 import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.UUID;
 
 /**
@@ -36,20 +36,21 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
     @Override
     protected void doPostExecute() {
         // todo: add to error notifier
-        for (UUID stateId : statesToRemove) {
-            getCheckStateStore().remove(stateId);
+        if (statesToRemove.size() > 0) {
+            getLog().info("Removing states:");
+            for (UUID stateId : statesToRemove) {
+                getLog().infof(getCheckStateStore().get(stateId).toString());
+                getCheckStateStore().remove(stateId);
+            }
         }
     }
 
-    protected boolean stateTimedOut(GregorianCalendar stateTime, int timeOutInSeconds) {
+    protected boolean stateTimedOut(DateTime stateTime, int timeOutInSeconds) {
         return getHeartbeatEvent().hasExpired(stateTime, timeOutInSeconds);
     }
 
-    protected void flagStateForRemoval(CheckState state)
-    {
-        if( state != null && state.getStateId() != null )
-        {
-            getLog().infof("Removing state %s", state.toString() );
+    protected void flagStateForRemoval(CheckState state) {
+        if (state != null && state.getStateId() != null) {
             statesToRemove.add(state.getStateId());
         }
     }

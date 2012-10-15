@@ -1,8 +1,8 @@
 package com.smspl.mc4.monitoring.virtualnumber.state;
 
 import com.smspl.mc4.monitoring.virtualnumber.config.VirtualNumberConfig;
+import org.joda.time.DateTime;
 
-import java.util.GregorianCalendar;
 import java.util.UUID;
 
 /**
@@ -11,25 +11,25 @@ import java.util.UUID;
  */
 public class CheckState {
     private final UUID stateId;
-    private final GregorianCalendar startTime;
+    private final DateTime startTime;
     private String documentId;
-    private GregorianCalendar submitTime;
+    private DateTime submitTime;
     private String submitStatus;
-    private GregorianCalendar deliveryReceiptTime;
+    private DateTime deliveryReceiptTime;
     private String deliveryReceiptStatus;
-    private GregorianCalendar receiveTime;
+    private DateTime receiveTime;
     private VirtualNumberConfig testConfig;
 
     public CheckState() {
         this.stateId = UUID.randomUUID();
-        this.startTime = new GregorianCalendar();
+        this.startTime = new DateTime();
     }
 
     public UUID getStateId() {
         return stateId;
     }
 
-    public GregorianCalendar getStartTime() {
+    public DateTime getStartTime() {
         return startTime;
     }
 
@@ -37,7 +37,7 @@ public class CheckState {
         return documentId;
     }
 
-    public GregorianCalendar getSubmitTime() {
+    public DateTime getSubmitTime() {
         return submitTime;
     }
 
@@ -45,7 +45,7 @@ public class CheckState {
         this.documentId = documentId;
     }
 
-    public void setSubmitTime(GregorianCalendar submitTime) {
+    public void setSubmitTime(DateTime submitTime) {
         this.submitTime = submitTime;
     }
 
@@ -53,7 +53,7 @@ public class CheckState {
         this.submitStatus = submitStatus;
     }
 
-    public void setDeliveryReceiptTime(GregorianCalendar deliveryReceiptTime) {
+    public void setDeliveryReceiptTime(DateTime deliveryReceiptTime) {
         this.deliveryReceiptTime = deliveryReceiptTime;
     }
 
@@ -61,7 +61,7 @@ public class CheckState {
         this.deliveryReceiptStatus = deliveryReceiptStatus;
     }
 
-    public void setReceiveTime(GregorianCalendar receiveTime) {
+    public void setReceiveTime(DateTime receiveTime) {
         this.receiveTime = receiveTime;
     }
 
@@ -69,7 +69,7 @@ public class CheckState {
         return submitStatus;
     }
 
-    public GregorianCalendar getDeliveryReceiptTime() {
+    public DateTime getDeliveryReceiptTime() {
         return deliveryReceiptTime;
     }
 
@@ -77,7 +77,7 @@ public class CheckState {
         return deliveryReceiptStatus;
     }
 
-    public GregorianCalendar getReceiveTime() {
+    public DateTime getReceiveTime() {
         return receiveTime;
     }
 
@@ -112,8 +112,8 @@ public class CheckState {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("id[" + stateId + "]");
-        sb.append("st[" + ((startTime == null) ? "" : startTime.getTime()) + "]");
-        sb.append("su[" + ((submitTime == null) ? "" : submitTime.getTime()) + "]");
+        sb.append("st[" + ((startTime == null) ? "" : startTime.toString()) + "]");
+        sb.append("su[" + ((submitTime == null) ? "" : submitTime.toString()) + "]");
         return sb.toString();
     }
 }

@@ -2,8 +2,7 @@ package com.smspl.mc4.monitoring.virtualnumber.state;
 
 import com.smspl.mc4.monitoring.virtualnumber.config.VirtualNumberConfig;
 import com.smspl.mc4.monitoring.virtualnumber.rest.SubmitStatusEx;
-
-import java.util.GregorianCalendar;
+import org.joda.time.DateTime;
 
 /**
  * User: adamlau
@@ -43,11 +42,11 @@ public class CheckStateBuilder {
     {
         checkCommandState.setDocumentId(status.getDocumentId());
         checkCommandState.setSubmitStatus(String.valueOf(status.getMessageStatus()));
-        checkCommandState.setSubmitTime(new GregorianCalendar());
+        checkCommandState.setSubmitTime(new DateTime());
         return this;
     }
 
-    public CheckStateBuilder withDeliveryStatus(DeliveryReceiptPushState deliveryReceiptPushState, GregorianCalendar timeStamp)
+    public CheckStateBuilder withDeliveryStatus(DeliveryReceiptPushState deliveryReceiptPushState, DateTime timeStamp)
     {
         checkCommandState.setDeliveryReceiptStatus(deliveryReceiptPushState.getStatus());
         checkCommandState.setDeliveryReceiptTime(timeStamp);
@@ -58,7 +57,7 @@ public class CheckStateBuilder {
         return checkCommandState;
     }
 
-    public CheckStateBuilder withInboundSmsStatus(InboundSmsPushState inboundSmsPushState, GregorianCalendar timeStamp) {
+    public CheckStateBuilder withInboundSmsStatus(InboundSmsPushState inboundSmsPushState, DateTime timeStamp) {
         checkCommandState.setReceiveTime(timeStamp);
         return this;
     }

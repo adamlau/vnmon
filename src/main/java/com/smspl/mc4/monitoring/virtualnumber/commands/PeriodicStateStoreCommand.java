@@ -1,6 +1,6 @@
 package com.smspl.mc4.monitoring.virtualnumber.commands;
 
-import java.util.GregorianCalendar;
+import org.joda.time.DateTime;
 
 /**
  * User: adam
@@ -8,13 +8,15 @@ import java.util.GregorianCalendar;
  */
 public abstract class PeriodicStateStoreCommand extends CheckStateStoreCommand {
 
-    protected static GregorianCalendar due = null;
+    protected static DateTime due = null;
     protected static Integer periodInSeconds = 20;
 
     @Override
     protected void doPreExecute() {
         if( due == null ) makeDueNow();
-        getLog().infof("%s due to run after %s", this.getClass().getSimpleName(), due.getTime().toString());
+
+        if( !isDue() )
+            getLog().infof("%s due to run after %s", this.getClass().getSimpleName(), due.toString());
     }
 
     @Override

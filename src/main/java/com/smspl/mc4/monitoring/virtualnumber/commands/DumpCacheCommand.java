@@ -12,7 +12,7 @@ public class DumpCacheCommand extends CheckStateStoreCommand {
     @Override
     protected void doExecute() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Cache dump at: " + getHeartbeatEvent().getDueNext(0).getTime() );
+        sb.append("Cache dump at: " + getHeartbeatEvent().getTime() );
         for (CheckState state : getCheckStateStore().getStates()) {
             sb.append("\n" + state.toString());
         }
