@@ -62,12 +62,16 @@ public class CheckState {
         this.testConfig = testConfig;
     }
 
+    public boolean hasReceivedInboundSmsInTime(TimeOutConfig timeOutConfig) {
+        return (receiveTime != null) || !timeOutConfig.hasTimedOut(receiveTime);
+    }
+
     public boolean hasReceivedDeliveryReceiptInTime(TimeOutConfig timeOutConfig) {
         return (deliveryReceiptTime != null) || !timeOutConfig.hasTimedOut(submitTime);
     }
 
     public boolean hasSubmittedNewMessageInTime(TimeOutConfig timeOutConfig) {
-        return timeOutConfig.hasTimedOut(startTime);
+        return (startTime != null) || !timeOutConfig.hasTimedOut(startTime);
     }
 
     public VirtualNumberConfig getTestConfig() {
@@ -95,8 +99,11 @@ public class CheckState {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("id[" + stateId + "]");
-        sb.append("st[" + ((startTime == null) ? "" : startTime.toString()) + "]");
-        sb.append("su[" + ((submitTime == null) ? "" : submitTime.toString()) + "]");
+        sb.append("doc[" + documentId + "]");
+        sb.append("st[" + ((startTime == null) ? "" : startTime.toString("hh:mm:ss")) + "]");
+        sb.append("su[" + ((submitTime == null) ? "" : submitTime.toString("hh:mm:ss")) + "]");
+        sb.append("dr[" + ((deliveryReceiptTime == null) ? "" : deliveryReceiptTime.toString("hh:mm:ss")) + "]");
+        sb.append("in[" + ((receiveTime == null) ? "" : receiveTime.toString("hh:mm:ss")) + "]");
         return sb.toString();
     }
 

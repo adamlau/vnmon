@@ -4,19 +4,20 @@ import com.smspl.mc4.monitoring.virtualnumber.state.CheckState;
 import com.smspl.mc4.monitoring.virtualnumber.state.Phase;
 
 /**
- * User: adam
- * Date: 11/10/12
+ * User: adamlau
+ * Date: 15/10/12
+ * Time: 1:43 PM
  */
-public class CheckInboundSmsResponseTime extends CheckStateCommand {
+public class ExpireCompletedChecks extends CheckStateCommand {
 
     @Override
     protected boolean accept(CheckState state) {
-        return state.isInPhase(Phase.DELIVERY_RECEIPT_PROCESSED);
+        return state.isInPhase(Phase.INBOUND_SMS_PROCESSED);
     }
 
     @Override
     protected void process(CheckState state) {
-        if( !state.hasReceivedInboundSmsInTime(getTimeOutConfig()))
-            flagStateForRemoval(state);
+        getLog().infof("cleaning up: %s", state);
+        getCheckStateStore().remove(state.getStateId());
     }
 }

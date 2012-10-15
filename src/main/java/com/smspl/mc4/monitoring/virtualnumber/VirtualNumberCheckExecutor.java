@@ -14,11 +14,12 @@ import javax.inject.Inject;
 public class VirtualNumberCheckExecutor {
 
     @Inject Logger log;
+    @Inject ExpireNewChecksCommand expireNewChecksCommand;
     @Inject AddNewChecksCommand addNewChecksCommand;
     @Inject SubmitSmsForNewChecks submitSmsForNewChecks;
     @Inject CheckDeliveryReceiptResponseTime checkDeliveryReceiptResponseTime;
     @Inject CheckInboundSmsResponseTime checkInboundSmsResponseTime;
-    @Inject ExpireNewChecksCommand expireNewChecksCommand;
+    @Inject ExpireCompletedChecks expireCompletedChecks;
     @Inject DumpCacheCommand dumpCacheCommand;
 
     public void runChecks(@Observes HeartbeatEvent heartbeatEvent) {
@@ -27,7 +28,8 @@ public class VirtualNumberCheckExecutor {
         addNewChecksCommand.execute(heartbeatEvent);
         submitSmsForNewChecks.execute(heartbeatEvent);
         checkDeliveryReceiptResponseTime.execute(heartbeatEvent);
-//        checkInboundSmsResponseTime.execute(heartbeatEvent);
+        checkInboundSmsResponseTime.execute(heartbeatEvent);
+        expireCompletedChecks.execute(heartbeatEvent);
         dumpCacheCommand.execute(heartbeatEvent);
         log.info("Finished checks...");
     }

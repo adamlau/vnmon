@@ -34,5 +34,6 @@ public class SubmitSmsForNewChecks extends CheckStateCommand {
                 state.getStateId().toString());
 
         CheckStateBuilder.update(state).withSubmitStatus(status);
+        getLog().infof("Submitted new message: %s", state.toString());
     }
 }
