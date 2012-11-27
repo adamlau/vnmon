@@ -17,6 +17,6 @@ public class CheckDeliveryReceiptResponseTime extends CheckStateCommand {
     @Override
     protected void process(CheckState state) {
         if( !state.hasReceivedDeliveryReceiptInTime(getTimeOutConfig()))
-            flagStateForRemoval(state);
+            flagStateForRemoval(state, "Delivery receipt was not processed in time: " + state);
     }
 }
