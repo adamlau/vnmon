@@ -31,7 +31,7 @@ public class ErrorNotifier {
     {
         for(String recipient : notifierConfig.getMobileRecipients())
         {
-            smsSubmitService.submit(notifierConfig.getUsername(), notifierConfig.getPassword(), recipient, message);
+            smsSubmitService.submit(notifierConfig.getUsername(), notifierConfig.getPassword(), recipient, message, null);
         }
     }
 }

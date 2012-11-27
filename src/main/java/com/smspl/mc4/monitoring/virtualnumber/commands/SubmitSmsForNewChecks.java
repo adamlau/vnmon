@@ -29,7 +29,8 @@ public class SubmitSmsForNewChecks extends CheckStateCommand {
                 state.getTestConfig().getUsername(),
                 state.getTestConfig().getPassword(),
                 state.getTestConfig().getRecipient(),
-                state.getStateId().toString());
+                state.getStateId().toString(),
+                state.getTestConfig().getSender());
 
         CheckStateBuilder.update(state).withSubmitStatus(status);
         getLog().infof("Submitted new message: %s", state.toString());

@@ -18,7 +18,8 @@ public interface SendSMSService {
     SubmitStatusEx sendSingle2(@QueryParam("username")String username,
                        @QueryParam("password")String password,
                        @QueryParam("recipient")String recipient,
-                       @QueryParam("text")String text
+                       @QueryParam("text")String text,
+                       @QueryParam("sender")String sender
                        );
 
 }

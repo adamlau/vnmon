@@ -17,8 +17,8 @@ public class SMSSubmitService {
     @RestClient("http://primary.smartmessagingservices.net:8080/mc5")
     SendSMSService sendSMSService;
 
-    public SubmitStatusEx submit(String username, String password, String recipient, String message)
+    public SubmitStatusEx submit(String username, String password, String recipient, String message, String sender)
     {
-        return sendSMSService.sendSingle2(username, password, recipient, message);
+        return sendSMSService.sendSingle2(username, password, recipient, message, sender);
     }
 }
