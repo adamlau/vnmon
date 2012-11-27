@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Virtual Number monitoring</title>
-    <p>Server time: <%= org.joda.time.DateTime.now().toString() %></p>
+    <p>Server time: <%= org.joda.time.DateTime.now().toString("yyyy-mm-dd HH:mm:ss") %></p>
     <p>Current checks:</p>
     <c:forEach var="state" items="${states}">
         ${state.toString()}<br/>

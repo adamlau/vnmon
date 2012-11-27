@@ -100,10 +100,10 @@ public class CheckState {
         StringBuilder sb = new StringBuilder();
         sb.append("id[" + stateId + "]");
         sb.append("doc[" + documentId + "]");
-        sb.append("st[" + ((startTime == null) ? "" : startTime.toString("hh:mm:ss")) + "]");
-        sb.append("su[" + ((submitTime == null) ? "" : submitTime.toString("hh:mm:ss")) + "]");
-        sb.append("dr[" + ((deliveryReceiptTime == null) ? "" : deliveryReceiptTime.toString("hh:mm:ss")) + "]");
-        sb.append("in[" + ((receiveTime == null) ? "" : receiveTime.toString("hh:mm:ss")) + "]");
+        sb.append("st[" + ((startTime == null) ? "" : startTime.toString("HH:mm:ss")) + "]");
+        sb.append("su[" + ((submitTime == null) ? "" : submitTime.toString("HH:mm:ss")) + "]");
+        sb.append("dr[" + ((deliveryReceiptTime == null) ? "" : deliveryReceiptTime.toString("HH:mm:ss")) + "]");
+        sb.append("in[" + ((receiveTime == null) ? "" : receiveTime.toString("HH:mm:ss")) + "]");
         return sb.toString();
     }
 
