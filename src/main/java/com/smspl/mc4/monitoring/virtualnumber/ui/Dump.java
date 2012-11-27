@@ -23,6 +23,7 @@ public class Dump extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("states", checkStateStore.getStates());
+        req.setAttribute("removedStates", checkStateStore.getRemovedStates());
         getServletContext().getRequestDispatcher("/dump.jsp").forward(req,resp);
     }
 }

@@ -10,8 +10,14 @@
 <html>
 <head>
     <title>Virtual Number monitoring</title>
+    <p>Current checks:</p>
     <c:forEach var="state" items="${states}">
         ${state.toString()}<br/>
+    </c:forEach>
+    <br/>
+    <p>Removed checks:</p>
+    <c:forEach var="state" items="${removedStates}">
+        ${state}<br/>
     </c:forEach>
 </head>
 <body>
