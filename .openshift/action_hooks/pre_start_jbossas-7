@@ -12,3 +12,4 @@
 # prevent your application from stopping cleanly or starting at all.
 # Application start and stop is subject to different timeouts
 # throughout the system.
+export _JAVA_OPTS="-Duser.timezone=Australia/Melbourne"
