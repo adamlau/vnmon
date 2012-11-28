@@ -10,7 +10,7 @@ import org.joda.time.Interval;
  */
 public class PeriodCalculator {
 
-    private int highFrequencyPeriodInSeconds = 15 * 60;
+    private int highFrequencyPeriodInSeconds = 30 * 60;
     private int defaultPeriodInSeconds = 60 * 60;
 
     private int startHour = 8;

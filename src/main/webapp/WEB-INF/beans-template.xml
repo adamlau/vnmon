@@ -13,26 +13,37 @@
     <mn:HeartbeatEmitter>
         <s:modifies/>
         <mn:initialDelay>3</mn:initialDelay>
-        <mn:periodInSeconds>5</mn:periodInSeconds>
+        <mn:periodInSeconds>60</mn:periodInSeconds>
     </mn:HeartbeatEmitter>
 
     <mn:ErrorNotifierConfig>
         <s:modifies/>
-        <mn:username>3</mn:username>
-        <mn:password>5</mn:password>
-        <mn:emailRecipients>5</mn:emailRecipients>
-        <mn:mobileRecipients>5</mn:mobileRecipients>
+        <!--<mn:username>a</mn:username>-->
+        <!--<mn:password>a</mn:password>-->
+        <!--<mn:emailRecipients>-->
+            <!--<s:value>nobody@nowhere.com</s:value>-->
+        <!--</mn:emailRecipients>-->
+        <!--<mn:mobileRecipients>-->
+            <!--<s:value>a</s:value>-->
+            <!--<s:value>a</s:value>-->
+        <!--</mn:mobileRecipients>-->
     </mn:ErrorNotifierConfig>
 
-    <mail:MailConfig
-            serverHost=""
-            serverPort="">
-        <s:modifies/>
+    <mail:MailConfig>
+        <!--serverHost="mail.nosuchhost.com"-->
+        <!--serverPort="25"-->
+        <!--username="nobody@nosuchhost.com"-->
+        <!--password="a">-->
     </mail:MailConfig>
 
     <vn:PeriodCalculator>
         <s:modifies/>
-        <vn:highFrequencyPeriodInSeconds>120</vn:highFrequencyPeriodInSeconds>
+        <!--<vn:highFrequencyPeriodInSeconds>1800</vn:highFrequencyPeriodInSeconds>-->
+        <!--<vn:defaultPeriodInSeconds>3600</vn:defaultPeriodInSeconds>-->
+        <!--<vn:startHour>8</vn:startHour>-->
+        <!--<vn:startMinute>0</vn:startMinute>-->
+        <!--<vn:endHour>17</vn:endHour>-->
+        <!--<vn:endMinute>59</vn:endMinute>-->
     </vn:PeriodCalculator>
 
     <vn:ExpireNewChecksCommand>
@@ -63,12 +74,12 @@
         </vn:checkConfigs>
     </vn:VirtualNumberConfigManager>
 
-    <vn:VirtualNumberConfig>
-        <s:modifies/>
-        <vn:username>a</vn:username>
-        <vn:password>m</vn:password>
-        <vn:recipient>0</vn:recipient>
-        <vn:sender>a</vn:sender>
-    </vn:VirtualNumberConfig>
+    <!--<vn:VirtualNumberConfig>-->
+        <!--<s:modifies/>-->
+        <!--<vn:username>a</vn:username>-->
+        <!--<vn:password>a</vn:password>-->
+        <!--<vn:recipient>a</vn:recipient>-->
+        <!--<vn:sender>a</vn:sender>-->
+    <!--</vn:VirtualNumberConfig>-->
 
 </beans>
