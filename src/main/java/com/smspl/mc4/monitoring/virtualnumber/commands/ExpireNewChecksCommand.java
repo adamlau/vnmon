@@ -18,7 +18,7 @@ public class ExpireNewChecksCommand extends CheckStateCommand {
     @Override
     protected void process(CheckState state) {
         if(  !state.hasSubmittedNewMessageInTime(getTimeOutConfig()) )
-            flagStateForRemoval(state,"New test message was not sent within the expected time: " + state.toString());
+            flagStateForRemoval(state,"New test message was not sent within the expected time");
     }
 
 }

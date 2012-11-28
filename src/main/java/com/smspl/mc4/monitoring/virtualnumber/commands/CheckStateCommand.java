@@ -45,9 +45,11 @@ public abstract class CheckStateCommand extends CheckStateStoreCommand {
     protected void doPostExecute() {
         if (!statesToRemove.isEmpty()) {
             for (Map.Entry<UUID, String> entry : statesToRemove.entrySet()) {
-                getLog().infof("remove: %s", getCheckStateStore().get(entry.getKey()).toString());
+                String stateString = getCheckStateStore().get(entry.getKey()).toString();
+                String reason = entry.getValue();
+                getLog().infof("removing - %s: %s", reason, stateString );
                 getCheckStateStore().remove(entry.getKey());
-                errorNotifier.notifyOfErrors(entry.getKey().toString() + ": " + entry.getValue());
+                errorNotifier.notifyOfErrors( reason, stateString );
             }
         }
     }

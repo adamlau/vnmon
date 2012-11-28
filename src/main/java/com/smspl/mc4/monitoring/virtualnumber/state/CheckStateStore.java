@@ -69,7 +69,10 @@ public class CheckStateStore {
     public void remove(UUID stateId) {
         if( stateId != null && stateCache.containsKey(stateId) )
         {
-            removedStateCache.add( get(stateId).toString());
+            removedStateCache.add(0, get(stateId).toString());
+            if(removedStateCache.size() > 100)
+                for(int i = removedStateCache.size() - 1; i >= 100; --i )
+                    if( removedStateCache.get(i) != null) removedStateCache.remove(i);
             stateCache.remove(stateId);
         }
 

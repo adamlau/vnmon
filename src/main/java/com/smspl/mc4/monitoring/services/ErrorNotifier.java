@@ -13,17 +13,17 @@ public class ErrorNotifier {
     @Inject SMSSubmitService smsSubmitService;
     @Inject MailerService mailerService;
 
-    public void notifyOfErrors(String errorText)
+    public void notifyOfErrors(String subject, String errorText)
     {
-        sendSMS(errorText);
-        sendEmail(errorText);
+        sendSMS(subject + ": " + errorText);
+        sendEmail(subject, errorText);
     }
 
-    private void sendEmail(String errorText)
+    private void sendEmail(String subject, String errorText)
     {
         for(String recipient : notifierConfig.getEmailRecipients())
         {
-            mailerService.send(recipient,"vnmon error notification", errorText);
+            mailerService.send(recipient,"vnmon error notification - " + subject, errorText);
         }
     }
 

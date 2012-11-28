@@ -17,6 +17,6 @@ public class CheckInboundSmsResponseTime extends CheckStateCommand {
     @Override
     protected void process(CheckState state) {
         if( !state.hasReceivedInboundSmsInTime(getTimeOutConfig()))
-            flagStateForRemoval(state, "Inbound sms was not received in time: " + state.toString());
+            flagStateForRemoval(state, "Inbound sms was not received in time");
     }
 }
