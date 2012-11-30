@@ -108,13 +108,13 @@ public class CheckState {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("dn[" + testConfig.getRecipient() + "]");
         sb.append("id[" + stateId + "]");
         sb.append("dc[" + documentId + "]");
         sb.append("st[" + ((startTime == null) ? "" : startTime.toString("HH:mm:ss")) + "]");
         sb.append("su[" + ((submitTime == null) ? "" : submitTime.toString("HH:mm:ss")) + "]");
         sb.append("dr[" + ((deliveryReceiptTime == null) ? "" : deliveryReceiptTime.toString("HH:mm:ss")) + "]");
         sb.append("in[" + ((receiveTime == null) ? "" : receiveTime.toString("HH:mm:ss")) + "]");
-        sb.append("dn[" + testConfig.getRecipient() + "]");
         sb.append( ( status != null ) ? status : "");
         return sb.toString();
     }
