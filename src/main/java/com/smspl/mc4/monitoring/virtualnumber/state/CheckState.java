@@ -20,14 +20,24 @@ public class CheckState {
     private String deliveryReceiptStatus;
     private DateTime receiveTime;
     private VirtualNumberConfig testConfig;
+    private String status;
 
     public CheckState() {
         this.stateId = UUID.randomUUID();
         this.startTime = new DateTime();
+        this.status = "Started";
     }
 
     public UUID getStateId() {
         return stateId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getDocumentId() {
@@ -105,6 +115,7 @@ public class CheckState {
         sb.append("dr[" + ((deliveryReceiptTime == null) ? "" : deliveryReceiptTime.toString("HH:mm:ss")) + "]");
         sb.append("in[" + ((receiveTime == null) ? "" : receiveTime.toString("HH:mm:ss")) + "]");
         sb.append("dn[" + testConfig.getRecipient() + "]");
+        sb.append( ( status != null ) ? status : "");
         return sb.toString();
     }
 

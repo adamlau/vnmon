@@ -20,11 +20,11 @@ public class CheckStateStore {
     Logger log;
 
     private final ConcurrentHashMap<UUID,CheckState> stateCache;
-    private final ArrayList<String> removedStateCache;
+    private final ArrayList<CheckState> removedStateCache;
 
     public CheckStateStore() {
         this.stateCache = new ConcurrentHashMap<UUID,CheckState>();
-        this.removedStateCache = new ArrayList<String>();
+        this.removedStateCache = new ArrayList<CheckState>();
     }
 
     public boolean isEmpty()
@@ -45,7 +45,7 @@ public class CheckStateStore {
         return this.stateCache.values();
     }
 
-    public Collection<String> getRemovedStates()
+    public Collection<CheckState> getRemovedStates()
     {
         return this.removedStateCache;
     }
@@ -66,14 +66,14 @@ public class CheckStateStore {
         return foundCheckState;
     }
 
-    public void remove(UUID stateId) {
-        if( stateId != null && stateCache.containsKey(stateId) )
+    public void remove(CheckState stateToRemove ) {
+        if( stateToRemove != null )
         {
-            removedStateCache.add(0, get(stateId).toString());
+            removedStateCache.add(0, stateToRemove);
             if(removedStateCache.size() > 100)
                 for(int i = removedStateCache.size() - 1; i >= 100; --i )
                     if( removedStateCache.get(i) != null) removedStateCache.remove(i);
-            stateCache.remove(stateId);
+            stateCache.remove(stateToRemove.getStateId());
         }
 
     }

@@ -29,11 +29,14 @@
         <!--</mn:mobileRecipients>-->
     </mn:ErrorNotifierConfig>
 
-    <mail:MailConfig>
-        <!--serverHost="mail.nosuchhost.com"-->
-        <!--serverPort="25"-->
-        <!--username="nobody@nosuchhost.com"-->
-        <!--password="a">-->
+    <mail:MailConfig >
+        <!--
+        serverHost="mail.nosuchhost.com"
+        serverPort="25"
+        username="nobody@nosuchhost.com"
+        password="a"
+        > -->
+        <s:modifies/>
     </mail:MailConfig>
 
     <vn:PeriodCalculator>

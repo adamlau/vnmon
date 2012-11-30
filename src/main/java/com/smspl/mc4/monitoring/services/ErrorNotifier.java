@@ -1,5 +1,7 @@
 package com.smspl.mc4.monitoring.services;
 
+import org.jboss.solder.logging.Logger;
+
 import javax.inject.Inject;
 
 /**
@@ -12,6 +14,7 @@ public class ErrorNotifier {
     @Inject ErrorNotifierConfig notifierConfig;
     @Inject SMSSubmitService smsSubmitService;
     @Inject MailerService mailerService;
+    @Inject Logger log;
 
     public void notifyOfErrors(String subject, String errorText)
     {
@@ -21,17 +24,22 @@ public class ErrorNotifier {
 
     private void sendEmail(String subject, String errorText)
     {
-        for(String recipient : notifierConfig.getEmailRecipients())
-        {
-            mailerService.send(recipient,"vnmon error notification - " + subject, errorText);
-        }
+        String mailSubject = ( subject !=null ) ? subject : "(no subject)";
+        if(notifierConfig.getEmailRecipients() != null)
+            for(String recipient : notifierConfig.getEmailRecipients())
+            {
+                log.infof("notifying by email: %s", recipient);
+                mailerService.send(recipient,"vnmon error notification - " + mailSubject, errorText);
+            }
     }
 
     private void sendSMS(String message)
     {
-        for(String recipient : notifierConfig.getMobileRecipients())
-        {
-            smsSubmitService.submit(notifierConfig.getUsername(), notifierConfig.getPassword(), recipient, message, null);
-        }
+        if(notifierConfig.getMobileRecipients() != null)
+            for(String recipient : notifierConfig.getMobileRecipients())
+            {
+                log.infof("notifying by sms: %s", recipient);
+                smsSubmitService.submit(notifierConfig.getUsername(), notifierConfig.getPassword(), recipient, message, null);
+            }
     }
 }

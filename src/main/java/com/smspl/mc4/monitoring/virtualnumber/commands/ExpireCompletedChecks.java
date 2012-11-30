@@ -18,6 +18,7 @@ public class ExpireCompletedChecks extends CheckStateCommand {
     @Override
     protected void process(CheckState state) {
         getLog().infof("cleaning up: %s", state);
-        getCheckStateStore().remove(state.getStateId());
+        state.setStatus("OK");
+        getCheckStateStore().remove(state);
     }
 }
